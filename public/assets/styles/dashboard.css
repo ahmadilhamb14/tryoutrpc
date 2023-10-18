@@ -1,0 +1,15 @@
+* {
+    font-family: "Poppins", sans-serif;
+}
+body {
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+}
+
+svg.bi.bi-person {
+    color: #fff;
+}
+
+button.btn.dropdown-toggle {
+    font-size: 14px;
+}
