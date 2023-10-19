@@ -36,3 +36,9 @@ Route::get('/users', function () {
     ]);
 });
 
+Route::get('/results', function () {
+    return view('results', [
+        "title" => "Results",
+    ]);
+});
+
