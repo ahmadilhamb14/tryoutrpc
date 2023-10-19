@@ -86,3 +86,22 @@ i {
 .greeting h1 {
     font-size: 20px;
 }
+
+.tryout {
+    margin: 20px;
+}
+.tryout .row {
+    gap: 2rem;
+}
+.card {
+    background-color: #c7c7c7;
+    text-align: center;
+}
+.card img {
+    width: 9rem;
+}
+
+.card button {
+    border-radius: 7px;
+    border: #c7c7c7;
+}

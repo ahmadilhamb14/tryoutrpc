@@ -7,5 +7,4 @@
      <h1> Halo! [Nama Pengguna]</h1>
 </div>
 @endsection
-
 <!-- extends section include yield disebut directive blade -->

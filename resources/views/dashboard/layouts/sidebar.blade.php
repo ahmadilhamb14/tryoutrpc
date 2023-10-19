@@ -8,11 +8,11 @@
         Home</a>
         <a href="#" >
           <i class="fa-solid fa-user"></i>
-        Profile</a>
-        <a href="#">
+        Users</a>
+        <a href="/tryout">
           <i class="fa-solid fa-pen-to-square"></i>
         Tryout</a>
-        <a href="#">
+        <a href="">
           <i class="fa-solid fa-trophy"></i>
         Result</a>
     </div>

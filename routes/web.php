@@ -23,3 +23,9 @@ Route::get('/login', function () {
         "title" => "Login",
     ]);
 });
+
+Route::get('/tryout', function () {
+    return view('tryout', [
+        "title" => "Tryout",
+    ]);
+});
