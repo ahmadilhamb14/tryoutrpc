@@ -4,7 +4,7 @@
 <!-- Berisi hal-hal berbeda dari setiap halaman yang akan di tampilkan di layout utama -->
 @section('container')
 <div class="greeting">
-     <h1> Halo! [Nama Pengguna]</h1>
+     <h1> Halo Admin</h1>
 </div>
 @endsection
 <!-- extends section include yield disebut directive blade -->

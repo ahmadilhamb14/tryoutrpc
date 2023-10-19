@@ -3,16 +3,16 @@
         <h4>Menu Utama</h4>
     </div>
     <div class="menu" >
-        <a href="#">
+        <a href="/">
           <i class="fa-solid fa-house"></i>
         Home</a>
-        <a href="#" >
+        <a href="/users" >
           <i class="fa-solid fa-user"></i>
         Users</a>
         <a href="/tryout">
           <i class="fa-solid fa-pen-to-square"></i>
         Tryout</a>
-        <a href="">
+        <a href="/results">
           <i class="fa-solid fa-trophy"></i>
         Result</a>
     </div>

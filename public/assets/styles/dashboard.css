@@ -87,7 +87,8 @@ i {
     font-size: 20px;
 }
 
-.tryout {
+.tryout,
+.users {
     margin: 20px;
 }
 .tryout .row {

@@ -3,7 +3,7 @@
 
 @section('container')
 <div class="tryout">
-    <h4 class="mb-3">Silahkan pilih jenis tryout</h4>
+    <h4 class="mb-3">Test Tryout</h4>
         <div class="row">
           <div class="card" style="width: 14rem">
             <div class="start-50 p-3">

@@ -29,3 +29,10 @@ Route::get('/tryout', function () {
         "title" => "Tryout",
     ]);
 });
+
+Route::get('/users', function () {
+    return view('users', [
+        "title" => "Users",
+    ]);
+});
+
