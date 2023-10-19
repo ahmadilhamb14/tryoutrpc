@@ -27,6 +27,11 @@ div.sidebar {
     width: 180px;
 }
 
+div.greeting {
+    margin: 20px;
+    height: 300px;
+}
+
 .sidebar {
     background-color: #c7c7c7;
     color: #fff;
@@ -69,4 +74,15 @@ i {
 
 .menu a i {
     margin-right: 20px;
+}
+
+.greeting {
+    background-color: #c7c7c7;
+    color: #000;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.greeting h1 {
+    font-size: 20px;
 }

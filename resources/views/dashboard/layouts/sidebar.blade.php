@@ -19,3 +19,6 @@
             </div>
           </div>
     </div>
+<div class="greeting">
+     <h1> Halo! [Nama Pengguna]</h1>
+</div>
