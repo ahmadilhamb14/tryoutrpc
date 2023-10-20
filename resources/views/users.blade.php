@@ -21,7 +21,7 @@
       <td>SMA XX</td>
       <td>Sy1f4</td>
       <td>********</td>
-      <td><a class="badge bg-success" href=""><span
+      <td><a class="badge bg-success" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
               data-feather="eye"></span></a>
           <a class="badge bg-warning" href=""><span
               data-feather="edit"></span></a>
@@ -33,5 +33,44 @@
   </tbody>
 </table> 
 <button class="btn btn-primary">Tambah User</button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">User</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="row justify-content-center">
+        <div class="col-5 mb-2">
+          Nama Lengkap
+        </div>
+        <div class="col-5 mb-2">
+          : Syifa
+        </div>
+        <div class="col-5 mb-2">
+          Asal Sekolah
+        </div>
+        <div class="col-5 mb-2">
+          : SMA XX
+        </div>
+        <div class="col-5 mb-2">
+          Username
+        </div>
+        <div class="col-5 mb-2">
+          : Sy1f4
+        </div>
+        <div class="col-5 mb-2">
+          Password
+        </div>
+        <div class="col-5 mb-2">
+          : *********
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
