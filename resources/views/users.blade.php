@@ -21,9 +21,9 @@
       <td>SMA XX</td>
       <td>Sy1f4</td>
       <td>********</td>
-      <td><a class="badge bg-success" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
+      <td><a class="badge bg-success" href="" data-bs-toggle="modal" data-bs-target="#show-user"><span
               data-feather="eye"></span></a>
-          <a class="badge bg-warning" href=""><span
+          <a class="badge bg-warning" href="" data-bs-toggle="modal" data-bs-target="#edit-user"><span
               data-feather="edit"></span></a>
           <form action="" method="POST" class="d-inline">
               <button class="badge bg-danger border-0"
@@ -32,10 +32,10 @@
     </tr>
   </tbody>
 </table> 
-<button class="btn btn-primary">Tambah User</button>
+<a type="button" class="btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#add-user">Tambah User</a>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Modal Show User -->
+<div class="modal fade" id="show-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -43,30 +43,108 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <div class="row justify-content-center">
-        <div class="col-5 mb-2">
+      <div class="row justify-content-center my-3">
+        <div class="col-4 mb-2">
           Nama Lengkap
         </div>
         <div class="col-5 mb-2">
           : Syifa
         </div>
-        <div class="col-5 mb-2">
+        <div class="col-4 mb-2">
           Asal Sekolah
         </div>
         <div class="col-5 mb-2">
           : SMA XX
         </div>
-        <div class="col-5 mb-2">
+        <div class="col-4 mb-2">
           Username
         </div>
         <div class="col-5 mb-2">
           : Sy1f4
         </div>
-        <div class="col-5 mb-2">
+        <div class="col-4 mb-2">
           Password
         </div>
         <div class="col-5 mb-2">
           : *********
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal add User -->
+<div class="modal fade" id="add-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah User</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="row justify-content-center my-3">
+        <div class="col-4 mb-2">
+          <label for="nama">Nama Lengkap</label>
+        </div>
+        <div class="col-6 mb-2">
+          <input type="text" name="nama" id="" class="rounded">
+        </div>
+        <div class="col-4 mb-2">
+          <label for="sekolah">Asal Sekolah</label>
+        </div>
+        <div class="col-6 mb-2">
+          <input type="text" name="sekolah" id="" class="rounded">
+        </div>
+        <div class="col-4 mb-2">
+          <label for="username">Username</label>
+        </div>
+        <div class="col-6 mb-2">
+          <input type="text" name="username" id="" class="rounded">
+        </div>
+        <div class="col-4 mb-2">
+          <label for="pass">Password</label>
+        </div>
+        <div class="col-6 mb-2">
+          <input type="password" name="pass" id="" class="rounded">
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal edit User -->
+<div class="modal fade" id="edit-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit User</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="row justify-content-center my-3">
+        <div class="col-4 mb-2">
+          <label for="nama">Nama Lengkap</label>
+        </div>
+        <div class="col-6 mb-2">
+          <input type="text" name="nama" id="" class="rounded" value="Syifa">
+        </div>
+        <div class="col-4 mb-2">
+          <label for="sekolah">Asal Sekolah</label>
+        </div>
+        <div class="col-6 mb-2">
+          <input type="text" name="sekolah" id="" class="rounded" value="SMA XX">
+        </div>
+        <div class="col-4 mb-2">
+          <label for="username">Username</label>
+        </div>
+        <div class="col-6 mb-2">
+          <input type="text" name="username" id="" class="rounded" value="Sy1f4">
+        </div>
+        <div class="col-4 mb-2">
+          <label for="pass">Password</label>
+        </div>
+        <div class="col-6 mb-2">
+          <input type="password" name="pass" id="" class="rounded" value="******">
         </div>
       </div>
       </div>
