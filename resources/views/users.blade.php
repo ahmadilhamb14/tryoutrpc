@@ -15,12 +15,14 @@
     </tr>
   </thead>
   <tbody>
+  @foreach ($users as $user)
+  <?php $no = 0 ?>
     <tr class="text-center">
-      <th scope="row">1</th>
-      <td>Syifa</td>
-      <td>SMA XX</td>
-      <td>Sy1f4</td>
-      <td>********</td>
+      <th scope="row"><?php $no++ ?></th>
+      <td>{{$user['fullname']}}</td>
+      <td>{{$user['school']}}</td>
+      <td>{{$user['username']}}</td>
+      <td> ******* </td> 
       <td><a class="badge bg-success" href="" data-bs-toggle="modal" data-bs-target="#show-user"><span
               data-feather="eye"></span></a>
           <a class="badge bg-warning" href="" data-bs-toggle="modal" data-bs-target="#edit-user"><span
@@ -30,6 +32,7 @@
                   onclick="return confirm('Apakah kamu yakin ingin menghapus data?')"><span
                     data-feather="trash-2"></span></button></td>
     </tr>
+  @endforeach
   </tbody>
 </table> 
 <a type="button" class="btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#add-user">Tambah User</a>
@@ -48,25 +51,25 @@
           Nama Lengkap
         </div>
         <div class="col-5 mb-2">
-          : Syifa
+          : {{$user['fullname']}}
         </div>
         <div class="col-4 mb-2">
           Asal Sekolah
         </div>
         <div class="col-5 mb-2">
-          : SMA XX
+          : {{$user['school']}}
         </div>
         <div class="col-4 mb-2">
           Username
         </div>
         <div class="col-5 mb-2">
-          : Sy1f4
+          : {{$user['username']}}
         </div>
         <div class="col-4 mb-2">
           Password
         </div>
         <div class="col-5 mb-2">
-          : *********
+          : {{$user['password']}}
         </div>
       </div>
       </div>
