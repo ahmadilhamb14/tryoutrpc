@@ -30,6 +30,7 @@ Route::get('/tryout', function () {
 Route::get('/users', [UserController::class, 'index']);
 
 Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'store']);
 
 Route::get('/results', function () {
     return view('results', [

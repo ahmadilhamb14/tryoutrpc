@@ -7,7 +7,8 @@
     <section align="center" class="wrapper col-6 text-center bg-warning rounded-start pt-2 py-4" >
         <div class="form signup">
             <header class="mb-2">Sign In</header>
-            <form method="post">
+            <form method="post" action="/login">
+                @csrf
                 <input class="mb-2" type="text" name="nama" placeholder="Full Name" required />
                 <input class="mb-2" type="text" name="sekolah" placeholder="School" required />
                 <input class="mb-2" type="text" name="email" placeholder="Username" required />
@@ -15,8 +16,8 @@
                 <input class="mb-2" type="submit" name="signup" value="Sign In" />
                 <br>
                 <br>
-                </form>
-            </div>
+            </form>
+        </div>
 
         <div id="login" class="form login mb-2">
             <header>Login</header>

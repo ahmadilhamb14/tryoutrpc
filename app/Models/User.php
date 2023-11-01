@@ -17,12 +17,14 @@ class User extends Authenticatable //kenapa ini authenticatable (look at other m
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'fullname',
-        'school',
-        'username',
-        'password'
-    ];
+    // protected $fillable = [
+    //     'fullname',
+    //     'school',
+    //     'username',
+    //     'password'
+    // ];
+
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
