@@ -23,7 +23,7 @@
       <td>{{$user['school']}}</td>
       <td>{{$user['username']}}</td>
       <td> ******* </td> 
-      <td><a class="badge bg-success" href="" data-bs-toggle="modal" data-bs-target="#show-user"><span
+      <td><a class="badge bg-success" href="/{{ $user->id }}" data-bs-toggle="modal" data-bs-target="#show-user"><span
               data-feather="eye"></span></a>
           <a class="badge bg-warning" href="" data-bs-toggle="modal" data-bs-target="#edit-user"><span
               data-feather="edit"></span></a>

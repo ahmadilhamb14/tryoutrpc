@@ -7,14 +7,26 @@
     <section align="center" class="wrapper col-6 text-center bg-warning rounded-start pt-2 py-4" >
         <div class="form signup">
             <header class="mb-2">Sign In</header>
-            <form action="/login" method="post">
+            <form action="/signin" method="post">
                 @csrf
                 <input class="mb-2" type="text" name="fullname" placeholder="Full Name" required />
                 <input class="mb-2" type="text" name="school" placeholder="School" required />
                 <input class="mb-2" type="text" name="username" placeholder="Username" required />
                 <input type="password" name="password" placeholder="Password" required />
                 <button type="submit" class="btn btn-light mb-2 p-2 rounded b-0">Sign In</button>
-                <!-- <input class="mb-2" type="submit" name="signup" value="Sign In" /> -->
+                @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+
+                @if(session()->has('loginError'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('loginError') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 <br>
                 <br>
             </form>
@@ -22,10 +34,13 @@
 
         <div id="login" class="form login mb-2">
             <header>Login</header>
-            <form method="post" action="/">
-                <input class="mb-3" type="text" name="email" placeholder="Username" required />
+
+            <form method="post" action="/login">
+                @csrf
+                <input class="mb-3" type="text" name="username" placeholder="Username" required />
                 <input type="password" name="password" placeholder="Password" required />
-                <input class="bg-warning" type="submit" name="login" value="Login" />
+                <button type="submit" class="btn btn-warning p-2 rounded b-0">Login</button>
+                <!-- <input class="bg-warning" type="submit" name="login" value="Login" /> -->
             </form>
         </div>
     </section>

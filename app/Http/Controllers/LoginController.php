@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -14,27 +15,32 @@ class LoginController extends Controller
         ]);
     }
 
-    public function store()
+    public function authenticate(Request $request)
     {
-        // Validasi Data
-        $validatedData = request()->validate([
-
-            'username' => 'required|min:3|max:255|unique:users',    
-            'password' => 'required|min:5|max:255',   
-            'fullname' => 'required|max:255',
-            'school' => 'required|max:255'
-
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
         ]);
 
-        // Enkripsi password
-        $validatedData['password'] = bcrypt($validatedData['password']);
-        $validatedData['password'] = Hash::make($validatedData['password']);
 
-        // Memasukkan Data Registrasi ke dalam Database
-        User::create($validatedData);
+        if (Auth::attempt($credentials)) {
+            // Menghindari kejahatan session fix session -> generate session
+            $request->session()->regenerate();
 
-        // // Masuk Ke Halaman Login dan Memberikan pesan berhasil registrasi
-        // // request()->session()->flash('success', 'Registrasion succesfull! Please Login');
-        return redirect('/login')->with('success', 'Registrasion succesfull! Please Login');
+            return redirect()->intended('/');
+        }
+
+
+        return back()->with('loginError', 'Login Failed');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
