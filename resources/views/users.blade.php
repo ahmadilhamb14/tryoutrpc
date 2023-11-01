@@ -69,7 +69,7 @@
           Password
         </div>
         <div class="col-5 mb-2">
-          : {{$user['password']}}
+          : *******
         </div>
       </div>
       </div>

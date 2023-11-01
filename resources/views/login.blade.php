@@ -7,13 +7,14 @@
     <section align="center" class="wrapper col-6 text-center bg-warning rounded-start pt-2 py-4" >
         <div class="form signup">
             <header class="mb-2">Sign In</header>
-            <form method="post" action="/login">
+            <form action="/login" method="post">
                 @csrf
-                <input class="mb-2" type="text" name="nama" placeholder="Full Name" required />
-                <input class="mb-2" type="text" name="sekolah" placeholder="School" required />
-                <input class="mb-2" type="text" name="email" placeholder="Username" required />
+                <input class="mb-2" type="text" name="fullname" placeholder="Full Name" required />
+                <input class="mb-2" type="text" name="school" placeholder="School" required />
+                <input class="mb-2" type="text" name="username" placeholder="Username" required />
                 <input type="password" name="password" placeholder="Password" required />
-                <input class="mb-2" type="submit" name="signup" value="Sign In" />
+                <button type="submit" class="btn btn-light mb-2 p-2 rounded b-0">Sign In</button>
+                <!-- <input class="mb-2" type="submit" name="signup" value="Sign In" /> -->
                 <br>
                 <br>
             </form>
@@ -21,7 +22,7 @@
 
         <div id="login" class="form login mb-2">
             <header>Login</header>
-            <form method="get" action="/">
+            <form method="post" action="/">
                 <input class="mb-3" type="text" name="email" placeholder="Username" required />
                 <input type="password" name="password" placeholder="Password" required />
                 <input class="bg-warning" type="submit" name="login" value="Login" />

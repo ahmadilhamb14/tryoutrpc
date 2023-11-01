@@ -16,16 +16,15 @@ class LoginController extends Controller
 
     public function store()
     {
-
         // Validasi Data
         $validatedData = request()->validate([
-            'fullname' => 'required|max:255',
-            'username' => 'required|min:3|max:255|unique:users',
-            'school' => 'required|max:255',
-            'password' => 'required|min:5|max:255'
-        ]);
 
-        // dd('registrasi');
+            'username' => 'required|min:3|max:255|unique:users',    
+            'password' => 'required|min:5|max:255',   
+            'fullname' => 'required|max:255',
+            'school' => 'required|max:255'
+
+        ]);
 
         // Enkripsi password
         $validatedData['password'] = bcrypt($validatedData['password']);
