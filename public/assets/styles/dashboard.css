@@ -106,3 +106,61 @@ i {
     border-radius: 7px;
     border: #c7c7c7;
 }
+
+/* Profile */
+
+.profile {
+    padding: 30px;
+}
+.top {
+    display: grid;
+    grid-template-columns: 43% 57%;
+    grid-gap: 5px;
+    position: relative;
+}
+.text {
+    padding: 10px;
+    width: 120px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+.picture {
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: #c7c7c7;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: -20px;
+    position: relative;
+    z-index: 3;
+}
+.picture i {
+    font-size: 80px;
+}
+.konten {
+    background-color: #c7c7c7;
+    color: #000;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: -15px;
+    position: relative;
+    z-index: 2;
+}
+
+.konten h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 15px;
+}
+.button {
+    background-color: rgb(61, 84, 214);
+    border-radius: 20px;
+    color: aliceblue;
+}
+.button {
+    font-size: 16px;
+    padding: 10px 20px;
+}

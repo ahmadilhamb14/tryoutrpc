@@ -15,7 +15,8 @@ class UserController extends Controller
     public function index()
     {
         return view('users', [
-            'users' => User::all()
+            'users' => User::all(),
+            "title" => "Users"
         ]);
     }
 

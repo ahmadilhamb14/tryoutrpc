@@ -18,7 +18,7 @@
   @foreach ($users as $user)
   <?php $no = 0 ?>
     <tr class="text-center">
-      <th scope="row"><?php $no++ ?></th>
+      <td>{{ $loop->iteration }}</td>
       <td>{{$user['fullname']}}</td>
       <td>{{$user['school']}}</td>
       <td>{{$user['username']}}</td>

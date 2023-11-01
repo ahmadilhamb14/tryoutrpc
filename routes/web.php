@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,30 +21,25 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/login', function () {
-    return view('login', [
-        "title" => "Login",
-    ]);
-});
-
 Route::get('/tryout', function () {
     return view('tryout', [
         "title" => "Tryout",
     ]);
 });
 
-Route::get('/users', function () {
-    return view('users', [
-        "title" => "Users",
-        "users" => User::all()
-    ]);
-});
+Route::get('/users', [UserController::class, 'index']);
 
-// Route::get('/users', [UserController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index']);
 
 Route::get('/results', function () {
     return view('results', [
         "title" => "Results",
+    ]);
+});
+
+Route::get('/profile', function () {
+    return view('profile', [
+        "title" => "Home",
     ]);
 });
 
