@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +35,11 @@ Route::get('/tryout', function () {
 Route::get('/users', function () {
     return view('users', [
         "title" => "Users",
+        "users" => User::all()
     ]);
 });
+
+// Route::get('/users', [UserController::class, 'index']);
 
 Route::get('/results', function () {
     return view('results', [

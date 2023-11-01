@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('password'); //password should be in hash
             $table->string('fullname');
             $table->string('school');
-            $table->boolean('isAdmin'); //value should be deafult as false
+            $table->boolean('isAdmin')->default(false); 
             // $table->rememberToken();
-            // $table->timestamps();
+            $table->timestamps(); # a must for tinker
         });
     }
 
