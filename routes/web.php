@@ -28,7 +28,11 @@ Route::get('/tryout', function () {
     ]);
 });
 
-Route::get('/users', [UserController::class, 'index']);
+Route::resource('/users', UserController::class);
+
+// Route::get('/users', [UserController::class, 'index']);
+
+
 
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');

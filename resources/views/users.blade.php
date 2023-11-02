@@ -23,9 +23,9 @@
       <td>{{$user['school']}}</td>
       <td>{{$user['username']}}</td>
       <td> ******* </td> 
-      <td><a class="badge bg-success" href="/{{ $user->id }}" data-bs-toggle="modal" data-bs-target="#show-user"><span
+      <td><a class="badge bg-success" href="/user/{{ $user->id }}" data-bs-toggle="modal" data-bs-target="#show-user"><span
               data-feather="eye"></span></a>
-          <a class="badge bg-warning" href="" data-bs-toggle="modal" data-bs-target="#edit-user"><span
+          <a class="badge bg-warning" href="/user/{{ $user->id }}/edit" data-bs-toggle="modal" data-bs-target="#edit-user"><span
               data-feather="edit"></span></a>
           <form action="" method="POST" class="d-inline">
               <button class="badge bg-danger border-0"
