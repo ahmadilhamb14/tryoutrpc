@@ -35,7 +35,7 @@
         <div id="login" class="form login mb-2">
             <header>Login</header>
 
-            <form method="post" action="/login">
+            <form method="post" action="{{ route('login') }}">
                 @csrf
                 <input class="mb-3" type="text" name="username" placeholder="Username" required />
                 <input type="password" name="password" placeholder="Password" required />

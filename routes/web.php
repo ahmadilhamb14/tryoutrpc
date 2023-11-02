@@ -31,7 +31,7 @@ Route::get('/tryout', function () {
 Route::get('/users', [UserController::class, 'index']);
 
 Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/signin', [RegisterController::class, 'store']);
 
 Route::get('/results', function () {

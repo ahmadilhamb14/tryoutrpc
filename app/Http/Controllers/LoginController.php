@@ -22,8 +22,7 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($request->only('username', 'password'))) {
             // Menghindari kejahatan session fix session -> generate session
             $request->session()->regenerate();
 

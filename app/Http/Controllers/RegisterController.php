@@ -20,7 +20,6 @@ class RegisterController extends Controller
 
 
         // Enkripsi password
-        $validatedData['password'] = bcrypt($validatedData['password']);
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         // Memasukkan Data Registrasi ke dalam Database
