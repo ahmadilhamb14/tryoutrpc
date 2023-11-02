@@ -50,19 +50,19 @@
         <div class="col-4 mb-2">
           Nama Lengkap
         </div>
-        <div class="col-5 mb-2">
+        <div class="col-5 mb-2" id="fullname">
           : {{$user['fullname']}}
         </div>
         <div class="col-4 mb-2">
           Asal Sekolah
         </div>
-        <div class="col-5 mb-2">
+        <div class="col-5 mb-2" id="school">
           : {{$user['school']}}
         </div>
         <div class="col-4 mb-2">
           Username
         </div>
-        <div class="col-5 mb-2">
+        <div class="col-5 mb-2 " id="username">
           : {{$user['username']}}
         </div>
         <div class="col-4 mb-2">
@@ -154,4 +154,44 @@
     </div>
   </div>
 </div>
+
+<!-- <script>
+// Get the user ID from the modal button
+const userId = $(this).data('id');
+
+// Fetch the user from the database
+$.ajax({
+    url: `/users/${userId}`,
+    method: 'GET',
+    success: function(response) {
+        // Display the user information in the modal
+        $('#fullname').text(response.fullname);
+        $('#school').text(response.school);
+        $('#username').text(response.username);
+    }
+});
+</script> -->
+
+<script>
+    $(document).ready(function() {
+        $('#show-user').on('show.bs.modal', function(event) {
+          
+            // Get the user ID from the modal button
+            const userId = $(event.relatedTarget).data('id');
+
+            // Fetch the user from the database
+            $.ajax({
+                url: `/users/${userId}`,
+                method: 'GET',
+                success: function(response) {
+                    // Display the user information in the modal
+                    $('#fullname').text(response.fullname);
+                    $('#school').text(response.school);
+                    $('#username').text(response.username);
+                }
+            });
+        });
+    });
+</script>
+
 @endsection
