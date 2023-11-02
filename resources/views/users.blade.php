@@ -23,8 +23,7 @@
       <td>{{$user['school']}}</td>
       <td>{{$user['username']}}</td>
       <td> ******* </td> 
-      <td><a class="badge bg-success" href="/user/{{ $user->id }}" data-bs-toggle="modal" data-bs-target="#show-user"><span
-              data-feather="eye"></span></a>
+      <td>
           <a class="badge bg-warning" href="/user/{{ $user->id }}/edit" data-bs-toggle="modal" data-bs-target="#edit-user"><span
               data-feather="edit"></span></a>
           <form action="" method="POST" class="d-inline">
@@ -154,44 +153,4 @@
     </div>
   </div>
 </div>
-
-<!-- <script>
-// Get the user ID from the modal button
-const userId = $(this).data('id');
-
-// Fetch the user from the database
-$.ajax({
-    url: `/users/${userId}`,
-    method: 'GET',
-    success: function(response) {
-        // Display the user information in the modal
-        $('#fullname').text(response.fullname);
-        $('#school').text(response.school);
-        $('#username').text(response.username);
-    }
-});
-</script> -->
-
-<script>
-    $(document).ready(function() {
-        $('#show-user').on('show.bs.modal', function(event) {
-          
-            // Get the user ID from the modal button
-            const userId = $(event.relatedTarget).data('id');
-
-            // Fetch the user from the database
-            $.ajax({
-                url: `/users/${userId}`,
-                method: 'GET',
-                success: function(response) {
-                    // Display the user information in the modal
-                    $('#fullname').text(response.fullname);
-                    $('#school').text(response.school);
-                    $('#username').text(response.username);
-                }
-            });
-        });
-    });
-</script>
-
 @endsection
