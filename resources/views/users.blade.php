@@ -24,12 +24,16 @@
       <td>{{$user['username']}}</td>
       <td> ******* </td> 
       <td>
-          <a class="badge bg-warning" href="/user/{{ $user->id }}/edit" data-bs-toggle="modal" data-bs-target="#edit-user"><span
-              data-feather="edit"></span></a>
+          <!-- <a class="badge bg-warning" href="/user/{{ $user->id }}/edit" data-bs-toggle="modal" data-bs-target="#edit-user"><span -->
+          <button class="badge bg-warning" value="{{ $user->id }}" id="mediumbutton" data-bs-toggle="modal" data-bs-target="#edit-user"><span
+              data-feather="edit"></span></button>
           <form action="" method="POST" class="d-inline">
+            @csrf
               <button class="badge bg-danger border-0"
                   onclick="return confirm('Apakah kamu yakin ingin menghapus data?')"><span
-                    data-feather="trash-2"></span></button></td>
+                    data-feather="trash-2"></span></button>
+          </form>
+</td>
     </tr>
   @endforeach
   </tbody>
@@ -128,19 +132,19 @@
           <label for="nama">Nama Lengkap</label>
         </div>
         <div class="col-6 mb-2">
-          <input type="text" name="nama" id="" class="rounded" value="Syifa">
+          <input type="text" name="nama" id="nama" class="rounded">
         </div>
         <div class="col-4 mb-2">
           <label for="sekolah">Asal Sekolah</label>
         </div>
         <div class="col-6 mb-2">
-          <input type="text" name="sekolah" id="" class="rounded" value="SMA XX">
+          <input type="text" name="sekolah" id="sekolah" class="rounded">
         </div>
         <div class="col-4 mb-2">
           <label for="username">Username</label>
         </div>
         <div class="col-6 mb-2">
-          <input type="text" name="username" id="" class="rounded" value="Sy1f4">
+          <input type="text" name="username" id="username-input" class="rounded">
         </div>
         <div class="col-4 mb-2">
           <label for="pass">Password</label>
@@ -153,4 +157,28 @@
     </div>
   </div>
 </div>
+
+<script>
+  const data = @json($users);
+  const modalButtons = document.querySelectorAll('[data-bs-toggle]');
+
+        modalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const nama = document.getElementById('nama');
+                const sekolah = document.getElementById('sekolah');
+                const username = document.getElementById('username-input');
+                console.log(username);
+
+                data.forEach(user => {
+                    if (button.value == user.id) {
+                      console.log(user);
+                        nama.value = user.fullname;
+                        sekolah.value = user.school;
+                        username.value = user.username;
+                    }
+                });
+    })
+})
+
+</script>
 @endsection
