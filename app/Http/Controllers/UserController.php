@@ -86,7 +86,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        
+        $rules = [
+            'username' => 'required|min:3|max:255|unique:users',    
+            'fullname' => 'required|max:255',
+            'school' => 'required|max:255'
+        ];
+        dd($rules);
+
+        $validatedData = $request->validate($rules);
+        User::where('id', $user->id)->update($validatedData);
+        return redirect('/users')->with('success', 'Data User berhasil diupdate!');
     }
 
     /**
@@ -98,6 +108,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         User::destroy($user->id);
-        return redirect('/users')->with('success', 'Post has been deleted!');
+        return redirect('/users')->with('success', 'Berhasil Menghapus User!');
     }
 }

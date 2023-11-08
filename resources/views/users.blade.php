@@ -2,6 +2,12 @@
 
 @section('container')
 <div class="users">
+@if(session()->has('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+{{ session('success') }}
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 <h4 class="mb-2">Users</h4>
 <table class="table">
   <thead>
@@ -10,7 +16,6 @@
       <th scope="col" style="background: #FFC107;">Nama</th>
       <th scope="col" style="background: #FFC107;">Asal Sekolah</th>
       <th scope="col" style="background: #FFC107;">Username</th>
-      <th scope="col" style="background: #FFC107;">Password</th>
       <th scope="col" style="background: #FFC107;">Action</th>
     </tr>
   </thead>
@@ -22,7 +27,6 @@
       <td>{{$user['fullname']}}</td>
       <td>{{$user['school']}}</td>
       <td>{{$user['username']}}</td>
-      <td> ******* </td> 
       <td>
           <!-- <a class="badge bg-warning" href="/user/{{ $user->id }}/edit" data-bs-toggle="modal" data-bs-target="#edit-user"><span -->
           <button class="badge bg-warning" value="{{ $user->id }}" id="mediumbutton" data-bs-toggle="modal" data-bs-target="#edit-user"><span
@@ -34,51 +38,12 @@
                   onclick="return confirm('Apakah kamu yakin ingin menghapus data?')"><span
                     data-feather="trash-2"></span></button>
           </form>
-</td>
+      </td>
     </tr>
   @endforeach
   </tbody>
 </table> 
 <a type="button" class="btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#add-user">Tambah User</a>
-</div>
-<!-- Modal Show User -->
-<div class="modal fade" id="show-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">User</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <div class="row justify-content-center my-3">
-        <div class="col-4 mb-2">
-          Nama Lengkap
-        </div>
-        <div class="col-5 mb-2" id="fullname">
-          : {{$user['fullname']}}
-        </div>
-        <div class="col-4 mb-2">
-          Asal Sekolah
-        </div>
-        <div class="col-5 mb-2" id="school">
-          : {{$user['school']}}
-        </div>
-        <div class="col-4 mb-2">
-          Username
-        </div>
-        <div class="col-5 mb-2 " id="username">
-          : {{$user['username']}}
-        </div>
-        <div class="col-4 mb-2">
-          Password
-        </div>
-        <div class="col-5 mb-2">
-          : *******
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
 </div>
 <!-- Modal add User -->
 <div class="modal fade" id="add-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -137,18 +102,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      <form action="/users/{{ $user->id }}" method="post" id="form">
+      @method('put')
+      @csrf
       <div class="row justify-content-center my-3">
         <div class="col-4 mb-2">
           <label for="nama">Nama Lengkap</label>
         </div>
         <div class="col-6 mb-2">
-          <input type="text" name="nama" id="nama" class="rounded">
+          <input type="text" name="fullname" id="nama" class="rounded">
         </div>
         <div class="col-4 mb-2">
           <label for="sekolah">Asal Sekolah</label>
         </div>
         <div class="col-6 mb-2">
-          <input type="text" name="sekolah" id="sekolah" class="rounded">
+          <input type="text" name="school" id="sekolah" class="rounded" >
         </div>
         <div class="col-4 mb-2">
           <label for="username">Username</label>
@@ -156,16 +124,11 @@
         <div class="col-6 mb-2">
           <input type="text" name="username" id="username-input" class="rounded">
         </div>
-        <div class="col-4 mb-2">
-          <label for="pass">Password</label>
-        </div>
-        <div class="col-6 mb-2">
-          <input type="password" name="pass" id="" class="rounded" value="******">
-        </div>
         <center>
-      <a type="button" class="btn btn-primary text-align-center mt-4" href="">Simpan</a>
-      </center>
+        <button type="submit" class="btn btn-primary text-align-center mt-4" href="">Simpan</button>
+        </center>
       </div>
+      </form>
       </div>
     </div>
   </div>
@@ -180,6 +143,7 @@
                 const nama = document.getElementById('nama');
                 const sekolah = document.getElementById('sekolah');
                 const username = document.getElementById('username-input');
+                const form = document.getElementById('form');
                 console.log(username);
 
                 data.forEach(user => {
@@ -188,6 +152,7 @@
                         nama.value = user.fullname;
                         sekolah.value = user.school;
                         username.value = user.username;
+                        // form.action = '/users/'user.id;
                     }
                 });
     })
