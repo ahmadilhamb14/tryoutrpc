@@ -27,7 +27,8 @@
           <!-- <a class="badge bg-warning" href="/user/{{ $user->id }}/edit" data-bs-toggle="modal" data-bs-target="#edit-user"><span -->
           <button class="badge bg-warning" value="{{ $user->id }}" id="mediumbutton" data-bs-toggle="modal" data-bs-target="#edit-user"><span
               data-feather="edit"></span></button>
-          <form action="" method="POST" class="d-inline">
+          <form action="/users/{{ $user->id }}" method="POST" class="d-inline">
+          @method('delete')
             @csrf
               <button class="badge bg-danger border-0"
                   onclick="return confirm('Apakah kamu yakin ingin menghapus data?')"><span
@@ -88,18 +89,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      <form action="/users" method="post">
+        @csrf
       <div class="row justify-content-center my-3">
+        
         <div class="col-4 mb-2">
           <label for="nama">Nama Lengkap</label>
         </div>
         <div class="col-6 mb-2">
-          <input type="text" name="nama" id="" class="rounded">
+          <input type="text" name="fullname" id="" class="rounded">
         </div>
         <div class="col-4 mb-2">
           <label for="sekolah">Asal Sekolah</label>
         </div>
         <div class="col-6 mb-2">
-          <input type="text" name="sekolah" id="" class="rounded">
+          <input type="text" name="school" id="" class="rounded">
         </div>
         <div class="col-4 mb-2">
           <label for="username">Username</label>
@@ -111,10 +115,16 @@
           <label for="pass">Password</label>
         </div>
         <div class="col-6 mb-2">
-          <input type="password" name="pass" id="" class="rounded">
+          <input type="password" name="password" id="" class="rounded">
         </div>
+        <center>
+        <button type="submit" class="btn btn-primary text-align-center mt-4" href="">Simpan</button>
+        </center>
+      
       </div>
+      </form>
       </div>
+      
     </div>
   </div>
 </div>
@@ -152,6 +162,9 @@
         <div class="col-6 mb-2">
           <input type="password" name="pass" id="" class="rounded" value="******">
         </div>
+        <center>
+      <a type="button" class="btn btn-primary text-align-center mt-4" href="">Simpan</a>
+      </center>
       </div>
       </div>
     </div>
