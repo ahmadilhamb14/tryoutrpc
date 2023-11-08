@@ -1,3 +1,6 @@
+@extends('dashboard.layouts.main')
+
+@section('container')
 <div class="users">
     <h4 class="mb-2 mt-4">UTBK-SNBT</h4>
     <h5 class = "mb-3" style="text-align: center;">Rincian Subtes</h5>
@@ -23,3 +26,4 @@
         START
      </button>
 </div>
+@endsection

@@ -31,7 +31,19 @@ Route::get('/tryout', function () {
     ]);
 })->middleware('auth');
 
-Route::resource('/users', UserController::class)->middleware('auth');
+Route::get('/tryout/kelola', function () {
+    return view('kelola', [
+        "title" => "Kelola Tryout",
+    ]);
+})->middleware('admin');
+
+Route::get('/tryout/review', function () {
+    return view('review', [
+        "title" => "Review Tryout",
+    ]);
+})->middleware('auth');
+
+Route::resource('/users', UserController::class)->middleware('admin');
 
 // Route::get('/users', [UserController::class, 'index']);
 

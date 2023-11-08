@@ -1,3 +1,6 @@
+@extends('dashboard.layouts.main')
+
+@section('container')
 <div class="users">
     <h4 class="mt-4">UTBK-SNBT</h4>
     <button class=" mb-3 px-2" style="border-radius: 10px; border: none; background-color: rgb(61, 84, 214); color: rgb(255, 255, 255); font-weight: bold;" >
@@ -22,3 +25,4 @@
         </tbody>
     </table> 
 </div>
+@endsection

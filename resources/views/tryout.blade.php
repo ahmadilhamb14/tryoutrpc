@@ -11,10 +11,10 @@
               <img class="mb-4" src="assets/img/snbt-logo.png" alt="" />
             </div>
             @can('admin')
-            <button class="bg-warning p-1">KELOLA</button>
+            <a href="/tryout/kelola" type="button" class="btn btn-warning p-1">KELOLA</a>
             @endcan
             @can('non-admin')
-            <button class="bg-warning p-1">REVIEW</button>
+            <a href="/tryout/review" type="button" class="btn btn-warning p-1">Review</a>
             @endcan
           </div>
           <div class="card p-0" style="width: 14rem">
@@ -23,10 +23,10 @@
               <img class="mb-4" src="assets/img/cat-logo1.png" alt="" style="width: 7.35rem"/>
             </div>
             @can('admin')
-            <button class="bg-warning p-1">KELOLA</button>
+            <a href="/tryout/kelola" type="button" class="btn btn-warning p-1">KELOLA</a>
             @endcan
             @can('non-admin')
-            <button class="bg-warning p-1">REVIEW</button>
+            <a href="/tryout/review" type="button" class="btn btn-warning p-1">Review</a>
             @endcan
           </div>
         </div>
