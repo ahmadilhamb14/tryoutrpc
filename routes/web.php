@@ -39,15 +39,14 @@ Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login')->middleware('guest');
 Route::post('/signin', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::get('/results', function () {
-    return view('results', [
-        "title" => "Results",
-    ]);
-});
+Route::resource('/results', ScoreController::class)->middleware('auth');
 
 Route::get('/profile', function () {
     return view('profile', [
         "title" => "Home",
     ]);
 })->middleware('auth');
+
+Route::post('/logout', [LoginController::class, 'logout']);
+
 

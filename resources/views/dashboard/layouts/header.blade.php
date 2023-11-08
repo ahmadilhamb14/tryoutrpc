@@ -19,9 +19,20 @@
                     Nama Pengguna
                   </button>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" style="font-size: 30sp; font-weight: 500;">Logout</a></li>
-                  </ul>
+								<li>
+									<hr class="dropdown-divider" />
+								</li>
+								<li>
+									<form action="/logout" method="POST">
+                    @csrf
+										<button type="submit" class="dropdown-item">
+											<i class="bi bi-box-arrow-right"></i> Logout
+										</button>
+									</form>
+								</li>
+							</ul>
             </div>
             </div>
           </nav>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
