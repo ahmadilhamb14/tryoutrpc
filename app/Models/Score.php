@@ -9,4 +9,16 @@ class Score extends Model
 {
     use HasFactory;
 
+    public function user() {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function subtest() {
+        return $this->belongsTo(SubTest::class, 'id_subtest');
+    }
+
+    public function tryout() {
+        return $this->belongsTo(Tryout::class);
+    }
+
 }

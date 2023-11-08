@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_subtest');
-            // $table->timestamps();
-            $table->timestamp('date');
+            $table->unsignedBigInteger('id_subtest'); 
+            $table->timestamps();
+            // $table->timestamp('date'); bisa di hapus karena timestamps milik laravel udh ada
             $table->integer('score');
 
             $table->foreign('id_user')->references('id')->on('users');

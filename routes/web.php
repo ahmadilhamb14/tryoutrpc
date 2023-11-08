@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -42,7 +43,7 @@ Route::get('/results', function () {
     return view('results', [
         "title" => "Results",
     ]);
-})->middleware('auth');
+});
 
 Route::get('/profile', function () {
     return view('profile', [
