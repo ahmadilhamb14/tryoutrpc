@@ -21,34 +21,33 @@ Route::get('/', function () {
     return view('home', [
         "title" => "Home",
     ]);
-});
+})->middleware('auth');
 
 Route::get('/tryout', function () {
     return view('tryout', [
         "title" => "Tryout",
     ]);
-});
+})->middleware('auth');
 
-Route::resource('/users', UserController::class);
+Route::resource('/users', UserController::class)->middleware('auth');
 
 // Route::get('/users', [UserController::class, 'index']);
 
 
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
-Route::post('/signin', [RegisterController::class, 'store']);
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login')->middleware('guest');
+Route::post('/signin', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::resource('/results', ScoreController::class);
-// Route::get('/results', function () {
-//     return view('results', [
-//         "title" => "Results",
-//     ]);
-// });
+Route::get('/results', function () {
+    return view('results', [
+        "title" => "Results",
+    ]);
+});
 
 Route::get('/profile', function () {
     return view('profile', [
         "title" => "Home",
     ]);
-});
+})->middleware('auth');
 

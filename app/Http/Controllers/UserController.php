@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -38,7 +39,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'username' => 'required|min:3|max:255|unique:users',    
+            'password' => 'required|min:5|max:255',   
+            'fullname' => 'required|max:255',
+            'school' => 'required|max:255'
+        ]);
+
+
+        // Enkripsi password
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        User::create($validatedData);
+
+        return redirect('/users')->with('success', 'Berhasil Menambahkan User');
     }
 
     /**
@@ -72,7 +86,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        
+        $rules = [
+            'username' => 'required|min:3|max:255|unique:users',    
+            'fullname' => 'required|max:255',
+            'school' => 'required|max:255'
+        ];
+        dd($rules);
+
+        $validatedData = $request->validate($rules);
+        User::where('id', $user->id)->update($validatedData);
+        return redirect('/users')->with('success', 'Data User berhasil diupdate!');
     }
 
     /**
@@ -83,6 +107,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+        return redirect('/users')->with('success', 'Berhasil Menghapus User!');
     }
 }
