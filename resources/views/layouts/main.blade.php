@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/assets/styles/style.css">
 
   <!-- Judulnya dinamis tergantung di halaman mana -->
-  <title>Test Blog | {{ $title }}</title>
+  <title>RPC Tryout | {{ $title }}</title>
 </head>
 
 <body>

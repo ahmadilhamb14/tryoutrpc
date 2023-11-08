@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,11 +43,12 @@ Route::post('/signin', [RegisterController::class, 'store'])->middleware('guest'
 
 Route::resource('/results', ScoreController::class)->middleware('auth');
 
-Route::get('/profile', function () {
-    return view('profile', [
-        "title" => "Home",
-    ]);
-})->middleware('auth');
+// Route::get('/profile', function () {
+//     return view('profile', [
+//         "title" => "Home",
+//     ]);
+// })->middleware('auth');
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 

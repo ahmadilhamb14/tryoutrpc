@@ -11,25 +11,25 @@
                 </div>
             </div>
             <div class="konten">
-                <h1>[Nama Pengguna]</h1>
+                <h1>{{ auth()->user()->fullname }}</h1>
                     <div class="row justify-content-center my-3">
                         <div class="col-4 mb-2">
                         Nama Lengkap
                         </div>
                         <div class="col-5 mb-2">
-                        : Syifa
+                        : {{ auth()->user()->fullname }}
                         </div>
                         <div class="col-4 mb-2">
                         Asal Sekolah
                         </div>
                         <div class="col-5 mb-2">
-                        : SMA XX
+                        : {{ auth()->user()->school }}
                         </div>
                         <div class="col-4 mb-2">
                         Username
                         </div>
                         <div class="col-5 mb-2">
-                        : Sy1f4
+                        : {{ auth()->user()->username }}
                         </div>
                         <div class="col-4 mb-2">
                         Password
@@ -39,7 +39,7 @@
                         </div>
                   </div>
 
-                  <button type="button" class="button mx-5 my-3 px-3">Ubah Profile</button>
+                  <a href="/profile/edit" type="button" class="btn btn-primary mx-5 my-3 px-3">Ubah Profile</a>
             </div>
         </div>
         
