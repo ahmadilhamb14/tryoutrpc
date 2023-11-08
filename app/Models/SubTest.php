@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SubTest extends Model
 {
     use HasFactory;
+    
+    public function tryout() {
+        return $this->belongsTo(Tryout::class, 'id_tryout');
+    }
+
 }

@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -38,11 +39,12 @@ Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/signin', [RegisterController::class, 'store']);
 
-Route::get('/results', function () {
-    return view('results', [
-        "title" => "Results",
-    ]);
-});
+Route::resource('/results', ScoreController::class);
+// Route::get('/results', function () {
+//     return view('results', [
+//         "title" => "Results",
+//     ]);
+// });
 
 Route::get('/profile', function () {
     return view('profile', [

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -23,12 +24,16 @@ class UserSeeder extends Seeder
             'fullname' => 'Syifa Ur Rahmi',
             'school' => Str::random(10),
             'isAdmin' => true,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
         DB::table('users')->insert([
             'username' => 'roko',
             'password' => Hash::make('user'),
             'fullname' => Str::random(10),
             'school' => Str::random(10),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
     }
 }

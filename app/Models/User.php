@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable //kenapa ini authenticatable (look at other models, it extends model...)
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -44,4 +44,11 @@ class User extends Authenticatable //kenapa ini authenticatable (look at other m
     // protected $casts = [
     //     'email_verified_at' => 'datetime',
     // ];
+
+    //relationship
+    public function scores()
+{
+    return $this->hasMany(Score::class);
+}
+
 }

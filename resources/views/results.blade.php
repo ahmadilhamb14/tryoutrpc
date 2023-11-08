@@ -13,20 +13,15 @@
     </tr>
   </thead>
   <tbody>
+  @foreach ($scores as $score)
     <tr class="text-center">
-      <th scope="row">1</th>
-      <td>Syifa</td>
-      <td>SKD-CAT</td>
-      <td>450 <a class="badge bg-success" href="" data-bs-toggle="modal" data-bs-target="#detail-hasil"><span
+      <th scope="row">{{ $loop->iteration }}</th>
+      <td>{{$score->user->fullname }}</td>
+      <td>{{$score->subtest->tryout->tryout}}</td>
+      <td>{{ $score->score }}<a class="badge bg-success" href="" data-bs-toggle="modal" data-bs-target="#detail-hasil"><span
               data-feather="eye"></span></a>
     </tr>
-    <tr class="text-center">
-      <th scope="row">2</th>
-      <td>Aisyah</td>
-      <td>UTKB-SNBT</td>
-      <td>435 <a class="badge bg-success" href=""><span
-              data-feather="eye"></span></a>
-    </tr>
+    @endforeach
   </tbody>
 </table> 
 </div>

@@ -15,7 +15,11 @@ class ScoreController extends Controller
      */
     public function index()
     {
-        //
+        return view('results', [
+            'scores' => Score::with('user', 'subtest.tryout')->get(),
+
+            "title" => "Results"
+        ]);
     }
 
     /**
