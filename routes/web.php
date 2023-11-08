@@ -20,6 +20,7 @@ use App\Http\Controllers\RegisterController;
 Route::get('/', function () {
     return view('home', [
         "title" => "Home",
+    // $this->authorize('admin')    
     ]);
 })->middleware('auth');
 
@@ -47,6 +48,6 @@ Route::get('/profile', function () {
     ]);
 })->middleware('auth');
 
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
 

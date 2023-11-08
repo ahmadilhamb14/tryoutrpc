@@ -6,9 +6,16 @@
         <a href="/">
           <i class="fa-solid fa-house"></i>
         Home</a>
+        @can('admin')
         <a href="/users" >
           <i class="fa-solid fa-user"></i>
         Users</a>
+        @endcan
+        @can('non-admin')
+        <a href="/profile" >
+          <i class="fa-solid fa-user"></i>
+        Profile</a>
+        @endcan
         <a href="/tryout">
           <i class="fa-solid fa-pen-to-square"></i>
         Tryout</a>
