@@ -164,3 +164,24 @@ i {
     font-size: 16px;
     padding: 10px 20px;
 }
+
+.hack1 {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.hack2 {
+    display: table-cell;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.table th {
+    background: #ffc107;
+    /* width: 100rem !important; */
+}
+
+.table td div {
+    width: 15rem;
+}
