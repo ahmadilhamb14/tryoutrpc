@@ -61,6 +61,8 @@ Route::resource('/results', ScoreController::class)->middleware('auth');
 //     ]);
 // })->middleware('auth');
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
+Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->middleware('auth');
+Route::post('/profile/edit/{user:id}', [ProfileController::class, 'update'])->middleware('auth');
 
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
