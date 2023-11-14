@@ -185,3 +185,12 @@ i {
 .table td div {
     width: 15rem;
 }
+
+.nav-pills {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #ffffff00;
+}

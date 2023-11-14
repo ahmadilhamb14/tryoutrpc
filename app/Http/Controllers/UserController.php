@@ -16,7 +16,8 @@ class UserController extends Controller
     public function index()
     {
         return view('users', [
-            'users' => User::all(),
+            
+            'users' => User::where('isAdmin', 0)->get(),
             "title" => "Users"
         ]);
     }
@@ -92,9 +93,10 @@ class UserController extends Controller
             'fullname' => 'required|max:255',
             'school' => 'required|max:255'
         ];
-        dd($rules);
+       
 
         $validatedData = $request->validate($rules);
+        dd($validatedData);
         User::where('id', $user->id)->update($validatedData);
         return redirect('/users')->with('success', 'Data User berhasil diupdate!');
     }

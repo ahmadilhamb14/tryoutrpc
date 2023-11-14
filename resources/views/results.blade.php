@@ -6,16 +6,16 @@
 <table class="table">
   <thead>
     <tr class="text-center">
-      <th scope="col" style="background: #FFC107;">No</th>
-      <th scope="col" style="background: #FFC107;">Nama</th>
-      <th scope="col" style="background: #FFC107;">Jenis Tryout</th>
-      <th scope="col" style="background: #FFC107;">Skor</th>
+      <th scope="col">No</th>
+      <th scope="col">Nama</th>
+      <th scope="col">Jenis Tryout</th>
+      <th scope="col">Skor</th>
     </tr>
   </thead>
   <tbody>
   @foreach ($scores as $score)
     <tr class="text-center">
-      <th scope="row">{{ $loop->iteration }}</th>
+      <td scope="row">{{ $loop->iteration }}</td>
       <td>{{$score->user->fullname }}</td>
       <td>{{$score->subtest->tryout->tryout}}</td>
       <td>{{ $score->score }}<a class="badge bg-success" href="" data-bs-toggle="modal" data-bs-target="#detail-hasil"><span
@@ -49,17 +49,17 @@
           </thead>
           <tbody>
             <tr class="text-center">
-              <th scope="row">1</th>
+              <td scope="row">1</th>
               <td>Tes Wawasan Kebangsaan</td>
               <td>100/150</td>
             </tr>
             <tr class="text-center">
-              <th scope="row">2</th>
+              <td scope="row">2</th>
               <td>Tes Intelegensia Umum</td>
               <td>150/175</td>
             </tr>
             <tr class="text-center">
-              <th scope="row">3</th>
+              <td scope="row">3</th>
               <td>Tes Karakteristik Pribadi</td>
               <td>200/225</td>
             </tr>
