@@ -7,15 +7,15 @@
     <table class="table">
         <thead>
             <tr class="text-center">
-                <th scope="col" style="background: #FFC107; ">No</th>
-                <th scope="col" style="background: #FFC107; ">Subtes</th>
-                <th scope="col" style="background: #FFC107;">Waktu Pengerjaan</th>
-                <th scope="col" style="background: #FFC107;">Jumlah Soal</th>
+                <th scope="col" >No</th>
+                <th scope="col" >Subtes</th>
+                <th scope="col" >Waktu Pengerjaan</th>
+                <th scope="col" >Jumlah Soal</th>
             </tr>
         </thead>
         <tbody>
             <tr class="text-center">
-                <th scope="row">1</th>
+                <td scope="row">1</td>
                 <td>Penalaran Matematika</td>
                 <td>20 Menit</td>
                 <td>30</td>

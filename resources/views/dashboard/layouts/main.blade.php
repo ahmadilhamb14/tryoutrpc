@@ -16,6 +16,20 @@
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+  <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+
+    <!-- Trix Editor -->
+    <link rel="stylesheet" type="text/css" href="/assets/style/trix.scss">
+    <script type="text/javascript" src="/assets/js/trix.js"></script>
+  
+    <!-- Tidak berjalan -->
+    <style>
+      trix-tollbar [data-trix-button-group="file-tools"] {
+        display:none;
+      }
+    </style>
+
 </head>
 
 <body >

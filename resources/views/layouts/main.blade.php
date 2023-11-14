@@ -8,6 +8,17 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/styles/style.css">
 
+  <!-- Trix Editor -->
+  <link rel="stylesheet" type="text/css" href="/assets/style/trix.css">
+  <script type="text/javascript" src="/assets/js/trix.js"></script>
+
+  <!-- Tidak berjalan -->
+  <style>
+    trix-tollbar [data-trix-button-group="file-tools"] {
+      display:none;
+    }
+</style>
+
   <!-- Judulnya dinamis tergantung di halaman mana -->
   <title>RPC Tryout | {{ $title }}</title>
 </head>

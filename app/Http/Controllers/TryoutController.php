@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tryout;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreTryoutRequest;
 use App\Http\Requests\UpdateTryoutRequest;
 
@@ -15,7 +16,9 @@ class TryoutController extends Controller
      */
     public function index()
     {
-        //
+        return view('kelola', [
+            "title" => "Kelola Tryout",
+        ]);
     }
 
     /**
@@ -25,7 +28,10 @@ class TryoutController extends Controller
      */
     public function create()
     {
-        //
+        return view('tambahsoal', [
+            "title" => "Tambah Soal",
+        ]);
+        
     }
 
     /**
@@ -34,9 +40,27 @@ class TryoutController extends Controller
      * @param  \App\Http\Requests\StoreTryoutRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTryoutRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'question' => 'required',    
+            'option_a' => 'required',   
+            'option_b' => 'required',
+            'option_c' => 'required',
+            'option_d' => 'required',
+            'option_e' => 'required',
+            // 'flexRadioDefault' => 'required'
+        ]);
+
+        dd($validatedData);
+
+
+        // Enkripsi password
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        User::create($validatedData);
+
+        // return redirect('/users')->with('success', 'Berhasil Menambahkan User');
     }
 
     /**

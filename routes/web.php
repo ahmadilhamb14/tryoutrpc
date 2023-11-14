@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TryoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +32,19 @@ Route::get('/tryout', function () {
     ]);
 })->middleware('auth');
 
-Route::get('/tryout/kelola', function () {
-    return view('kelola', [
-        "title" => "Kelola Tryout",
-    ]);
-})->middleware('admin');
+// Route::get('/tryout/kelola', function () {
+//     return view('kelola', [
+//         "title" => "Kelola Tryout",
+//     ]);
+// })->middleware('admin');
+
+Route::resource('/tryout/kelola', TryoutController::class)->middleware('admin');
+
+// Route::get('/tryout/kelola/tambahsoal', function () {
+//     return view('tambahsoal', [
+//         "title" => "Tambah Soal",
+//     ]);
+// })->middleware('admin');
 
 Route::get('/tryout/review', function () {
     return view('review', [
@@ -61,7 +70,7 @@ Route::resource('/results', ScoreController::class)->middleware('auth');
 //     ]);
 // })->middleware('auth');
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
-Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->middleware('auth');
+Route::get('/profile/edit/{user:id}', [ProfileController::class, 'edit'])->middleware('auth');
 Route::post('/profile/edit/{user:id}', [ProfileController::class, 'update'])->middleware('auth');
 
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');

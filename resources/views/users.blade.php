@@ -12,11 +12,11 @@
 <table class="table">
   <thead>
     <tr class="text-center">
-      <th scope="col" style="background: #FFC107;">No</th>
-      <th scope="col" style="background: #FFC107;">Nama</th>
-      <th scope="col" style="background: #FFC107;">Asal Sekolah</th>
-      <th scope="col" style="background: #FFC107;">Username</th>
-      <th scope="col" style="background: #FFC107;">Action</th>
+      <th scope="col">No</th>
+      <th scope="col">Nama</th>
+      <th scope="col">Asal Sekolah</th>
+      <th scope="col">Username</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
