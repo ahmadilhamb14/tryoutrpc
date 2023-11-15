@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -14,10 +15,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {        
         return view('users', [
-            
-            'users' => User::where('isAdmin', 0)->get(),
+            'users' => User::where('isAdmin', 0)->paginate(25),
             "title" => "Users"
         ]);
     }

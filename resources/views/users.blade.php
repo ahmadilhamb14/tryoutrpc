@@ -45,6 +45,11 @@
 </table> 
 <a type="button" class="btn btn-primary" href="" data-bs-toggle="modal" data-bs-target="#add-user">Tambah User</a>
 </div>
+
+<div class="d-flex justify-content-center">
+      {{ $users->links() }}
+</div>
+  
 <!-- Modal add User -->
 <div class="modal fade" id="add-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
