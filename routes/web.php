@@ -51,6 +51,11 @@ Route::get('/tryout/review', function () {
         "title" => "Review Tryout",
     ]);
 })->middleware('auth');
+Route::get('/tryout/soaltryout', function () {
+    return view('soaltryout', [
+        "title" => "SoalTryout",
+    ]);
+})->middleware('auth');
 
 Route::resource('/users', UserController::class)->middleware('admin');
 
