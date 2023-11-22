@@ -26,11 +26,11 @@ Route::get('/', function () {
     ]);
 })->middleware('auth');
 
-Route::get('/tryout', function () {
-    return view('tryout', [
-        "title" => "Tryout",
-    ]);
-})->middleware('auth');
+// Route::get('/tryout', function () {
+//     return view('tryout', [
+//         "title" => "Tryout",
+//     ]);
+// })->middleware('auth');
 
 // Route::get('/tryout/kelola', function () {
 //     return view('kelola', [
@@ -38,7 +38,8 @@ Route::get('/tryout', function () {
 //     ]);
 // })->middleware('admin');
 
-Route::resource('/tryout/kelola', TryoutController::class)->middleware('admin');
+// Route::resource('/tryout/kelola', TryoutController::class)->middleware('admin');
+Route::resource('/tryout', TryoutController::class)->middleware('admin');
 
 // Route::get('/tryout/kelola/tambahsoal', function () {
 //     return view('tambahsoal', [

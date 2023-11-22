@@ -5,30 +5,20 @@
 <div class="tryout">
     <h4 class="mb-2">Test Tryout</h4>
         <div class="row">
+          @foreach ($tryouts as $tryout)
           <div class="card p-0" style="width: 14rem">
             <div class="start-50 p-3">
-              <h3 class="mb-4">UTBK-SNBT</h3>
-              <img class="mb-4" src="assets/img/snbt-logo.png" alt="" />
+              <h3 class="mb-4">{{$tryout['tryout']}}</h3>
+              <img class="mb-3" src="assets/img/{{$tryout['tryout']}}-logo.png" alt="" height="132px"/>
             </div>
             @can('admin')
-            <a href="/tryout/kelola" type="button" class="btn btn-warning p-1">KELOLA</a>
+            <a href="tryout/{{ $tryout->id }}" type="button" class="btn btn-warning p-1">KELOLA</a>
             @endcan
             @can('non-admin')
             <a href="/tryout/review" type="button" class="btn btn-warning p-1">Review</a>
             @endcan
           </div>
-          <div class="card p-0" style="width: 14rem">
-            <div class="start-50 p-3">
-              <h3 class="mb-4">SKD-CAT</h3>
-              <img class="mb-4" src="assets/img/cat-logo1.png" alt="" style="width: 7.35rem"/>
-            </div>
-            @can('admin')
-            <a href="/tryout/kelola" type="button" class="btn btn-warning p-1">KELOLA</a>
-            @endcan
-            @can('non-admin')
-            <a href="/tryout/review" type="button" class="btn btn-warning p-1">Review</a>
-            @endcan
-          </div>
+          @endforeach
         </div>
 </div>
 @endsection

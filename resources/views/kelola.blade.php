@@ -2,8 +2,10 @@
 
 @section('container')
 <div class="users">
-    <h4 class="mt-4">UTBK-SNBT</h4>
-    <a href="kelola/create" class="btn btn-primary mb-3 px-2"  >
+    @foreach ($tryouts as $tryout)
+    <h4 class="">{{$tryout['tryout']}}</h4>
+    @endforeach
+    <a href="/tryout/create" class="btn btn-primary mb-3 px-2"  >
         Tambah Soal
     </a>
     <div class="hack1">
@@ -25,40 +27,41 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ($questions as $question)
             <tr class="text-center">
-                <td scope="row">1</td>
+                <td scope="row">{{ $loop->iteration }}</td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus illum illo ea hic optio maiores.
+                    {{ $question->question }}
                     </div>
                 </td>
-                <td>penalaran matematika</td>
+                <td>{{ $question->subtest->subtes }}</td>
                 <td>foto.jpg</td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus illum illo ea hic optio maiores.
+                    {{ $question->option_a }}
                     </div>
                 </td>
                 <td><div class="text-nowrap overflow-x-hidden text-truncate">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus illum illo ea hic optio maiores.
+                    {{ $question->option_b }}
                     </div>
                 </td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus illum illo ea hic optio maiores.
+                    {{ $question->option_c }}
                     </div>
                 </td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus illum illo ea hic optio maiores.
+                    {{ $question->option_d }}
                     </div>
                 </td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus illum illo ea hic optio maiores.
+                    {{ $question->option_e }}
                     </div>
                 </td>
-                <td>A</td>
+                <td>{{ $question->option_key }}</td>
                 <td>
                     <div>
                         <a href="" class="badge bg-success"><span
@@ -76,6 +79,7 @@
                     </div>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table> 
     </div>

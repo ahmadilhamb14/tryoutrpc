@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Tryout extends Model
 {
     use HasFactory;
+    
+    protected $table = 'tryouts';
+
+    public function subtest() {
+        return $this->hashMany(SubTest::class);
+    }
 }

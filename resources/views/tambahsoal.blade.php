@@ -5,7 +5,7 @@
 <div class="m-3">
     <h3>Tambah Soal</h3>
     <br>
-    <form action="/tryout/kelola" method="post">
+    <form action="/tryout" method="post">
         @csrf
         <div>
             <label for="question">Soal</label>
@@ -96,7 +96,7 @@
         <br>
         <center>
         <div>
-            <button href="" class="btn btn-primary" type="submit">Simpan</button>
+            <button href="/tryout" class="btn btn-primary" type="submit">Simpan</button>
         </div>
         </center>
     </form>

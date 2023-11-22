@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tryout;
+use App\Models\SubTest;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTryoutRequest;
 use App\Http\Requests\UpdateTryoutRequest;
@@ -16,8 +18,9 @@ class TryoutController extends Controller
      */
     public function index()
     {
-        return view('kelola', [
+        return view('tryout', [
             "title" => "Kelola Tryout",
+            "tryouts" => Tryout::all()
         ]);
     }
 
@@ -72,7 +75,13 @@ class TryoutController extends Controller
      */
     public function show(Tryout $tryout)
     {
-        //
+        return view('kelola', [
+            "title" => "Kelola Tryout",
+            "tryouts" => Tryout::find($tryout),
+            // "tryouts" => Tryout::where('id', $tryout)->first(),
+            "subtest" => Subtest::where('id_tryout', $tryout),
+            "questions" => Question::all()
+        ]);
     }
 
     /**
