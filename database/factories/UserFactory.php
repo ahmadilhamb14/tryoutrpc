@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'password' => Hash::make('password'), // password
             'fullname' => fake()->name(),
             'school' => fake()->company(),
-            'isAdmin' => fake()->boolean()
+            'isAdmin' => 0
             // 'remember_token' => Str::random(10),
         ];
     }

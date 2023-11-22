@@ -25,4 +25,8 @@ class Question extends Model
         'option_e',
         'option_key'
     ];
+
+    public function subtest() {
+        return $this->belongsTo(Subtest::class, 'id_subtest');
+    }
 }

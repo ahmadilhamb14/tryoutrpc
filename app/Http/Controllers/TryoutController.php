@@ -42,17 +42,18 @@ class TryoutController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'question' => 'required',    
+        $validatedData = $request->validate([            
+            'question' => 'required', 
+            'id_subtest' => 'required',   
             'option_a' => 'required',   
             'option_b' => 'required',
             'option_c' => 'required',
             'option_d' => 'required',
             'option_e' => 'required',
-            // 'flexRadioDefault' => 'required'
+            'option_key' => 'required'
         ]);
 
-        dd($validatedData);
+        dd($request->validate);
 
 
         // Enkripsi password
