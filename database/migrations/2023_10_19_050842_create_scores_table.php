@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_subtest'); 
-            $table->timestamps();
-            // $table->timestamp('date'); bisa di hapus karena timestamps milik laravel udh ada
             $table->integer('score');
+            $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_subtest')->references('id')->on('sub_tests');

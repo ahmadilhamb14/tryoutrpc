@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_subtest');
-            // $table->timestamps();
             $table->string('question');
             $table->string('text');
             $table->string('image');
@@ -26,6 +25,7 @@ return new class extends Migration
             $table->string('option_d');
             $table->string('option_e');
             $table->string('option_key'); //jawaban benar
+            $table->timestamps();
             
             $table->foreign('id_subtest')->references('id')->on('sub_tests');
 
