@@ -29,8 +29,9 @@
       <td>{{$user['username']}}</td>
       <td>
           <!-- <a class="badge bg-warning" href="/user/{{ $user->id }}/edit" data-bs-toggle="modal" data-bs-target="#edit-user"><span -->
-          <button class="badge bg-warning" value="{{ $user->id }}" id="mediumbutton" data-bs-toggle="modal" data-bs-target="#edit-user"><span
-              data-feather="edit"></span></button>
+          {{-- <button class="badge bg-warning" value="{{ $user->id }}" id="mediumbutton" data-bs-toggle="modal" data-bs-target="#edit-user"><span
+              data-feather="edit"></span></button> --}}
+            <a class="badge bg-warning" href="/users/{{ $user->id }}/edit"> <span data-feather="edit"></span></a>
           <form action="/users/{{ $user->id }}" method="POST" class="d-inline">
           @method('delete')
             @csrf

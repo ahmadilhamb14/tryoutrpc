@@ -34,9 +34,9 @@ class ProfileController extends Controller
     public function update(Request $request, User $user)
     {
         $rules = [
-            'username' => 'required|min:3|max:255|unique:users',    
-            'fullname' => 'required|max:255',
-            'school' => 'required|max:255'                                                                                                                                                                                                                                                                                                                     
+            'username' => 'min:3|max:255|unique:users',    
+            'fullname' => 'max:255',
+            'school' => 'max:255'                                                                                                                                                                                                                                                                                                                     
         ];
 
         $validatedData = $request->validate($rules);
