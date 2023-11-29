@@ -79,7 +79,7 @@ class TryoutController extends Controller
             "title" => "Kelola Tryout",
             "tryouts" => Tryout::find($tryout),
             // "tryouts" => Tryout::where('id', $tryout)->first(),
-            "subtest" => Subtest::where('id_tryout', $tryout),
+            "subtests" => SubTest::where('id_tryout', $tryout)->get(),
             "questions" => Question::all()
         ]);
     }

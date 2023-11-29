@@ -2,6 +2,7 @@
 
 @section('container')
 <div class="users">
+    @can('admin')
     @foreach ($tryouts as $tryout)
     <h4 class="">{{$tryout['tryout']}}</h4>
     @endforeach
@@ -84,5 +85,36 @@
     </table> 
     </div>
 </div>
+@endcan
+@can('non-admin')
+@foreach ($tryouts as $tryout)
+    <h4 class="">{{$tryout['tryout']}}</h4>
+@endforeach
+    <h5 class = "mb-3" style="text-align: center;">Rincian Subtes</h5>
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+                <th scope="col" >No</th>
+                <th scope="col" >Subtes</th>
+                <th scope="col" >Waktu Pengerjaan</th>
+                <th scope="col" >Jumlah Soal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ $subtests }}
+            @foreach ($subtests as $subtest)
+            <tr class="text-center">
+                <td scope="row">1</td>
+                <td>{{$subtest['subtest']}}</td>
+                <td>{{$subtest['timer']}}</td>
+                <td>30</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table> 
+    <a href="soaltryout" type="submit" class="btn btn-warning px-3 mt-4" >
+        START
+     </a>
+@endcan
 </div>
 @endsection

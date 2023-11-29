@@ -39,7 +39,7 @@ Route::get('/', function () {
 // })->middleware('admin');
 
 // Route::resource('/tryout/kelola', TryoutController::class)->middleware('admin');
-Route::resource('/tryout', TryoutController::class)->middleware('admin');
+Route::resource('/tryout', TryoutController::class)->middleware('auth');
 
 // Route::get('/tryout/kelola/tambahsoal', function () {
 //     return view('tambahsoal', [

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class SubTest extends Model
 {
     use HasFactory;
+
+    protected $table = 'sub_tests';
     
     public function tryout() {
         return $this->belongsTo(Tryout::class, 'id_tryout');
