@@ -13,12 +13,12 @@
     </tr>
   </thead>
   <tbody>
-  @foreach ($scores as $score)
+  @foreach ($rawResults as $item)
     <tr class="text-center">
       <td scope="row">{{ $loop->iteration }}</td>
-      <td>{{$score->user->fullname }}</td>
-      <td>{{$score->subtest->tryout->tryout}}</td>
-      <td>{{ $score->score }}<a class="badge bg-success" href="" data-bs-toggle="modal" data-bs-target="#detail-hasil"><span
+      <td>{{$item["fullname"] }}</td>
+      <td>{{$item["tryout"]}}</td>
+      <td>{{$item["total_score"]}}<a class="badge bg-success" href="" data-bs-toggle="modal" data-bs-target="#detail-hasil"><span
               data-feather="eye"></span></a>
     </tr>
     @endforeach
@@ -35,8 +35,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center mx-3">
-        <p>Hasil Tryout SKD-CAT <br>
-          Syifa <br>
+        @foreach ($scores as $score)
+        <p>{{$score->subtest->tryout->tryout}} <br>
+        {{$score->user->fullname }} <br>
           20 Oktober 2023
         </p>
         <table class="table">
@@ -51,20 +52,21 @@
             <tr class="text-center">
               <td scope="row">1</th>
               <td>Tes Wawasan Kebangsaan</td>
-              <td>100/150</td>
+              <td>{{ $score->score }}</td>
             </tr>
             <tr class="text-center">
               <td scope="row">2</th>
               <td>Tes Intelegensia Umum</td>
-              <td>150/175</td>
+              <td>{{ $score->score }}</td>
             </tr>
             <tr class="text-center">
               <td scope="row">3</th>
               <td>Tes Karakteristik Pribadi</td>
-              <td>200/225</td>
+              <td>{{ $score->score }}</td>
             </tr>
           </tbody>
         </table> 
+        @endforeach
       </div>
       </div>
     </div>
