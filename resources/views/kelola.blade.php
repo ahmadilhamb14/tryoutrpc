@@ -101,18 +101,17 @@
             </tr>
         </thead>
         <tbody>
-            {{ $subtests }}
             @foreach ($subtests as $subtest)
             <tr class="text-center">
-                <td scope="row">1</td>
-                <td>{{$subtest['subtest']}}</td>
-                <td>{{$subtest['timer']}}</td>
+                <td scope="row">{{ $loop->iteration }}</td>
+                <td>{{$subtest['subtes']}}</td>
+                <td>{{ date('s', strtotime($subtest['timer'])) }} menit</td>
                 <td>30</td>
             </tr>
             @endforeach
         </tbody>
     </table> 
-    <a href="soaltryout" type="submit" class="btn btn-warning px-3 mt-4" >
+    <a href="/tryout/1/soaltryout" class="btn btn-warning px-3 mt-4" >
         START
      </a>
 @endcan

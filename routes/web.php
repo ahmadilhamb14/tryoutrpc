@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ScoreController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TryoutController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,11 +53,13 @@ Route::get('/tryout/review', function () {
         "title" => "Review Tryout",
     ]);
 })->middleware('auth');
-Route::get('/tryout/soaltryout', function () {
-    return view('soaltryout', [
-        "title" => "SoalTryout",
-    ]);
-})->middleware('auth');
+// Route::get('/tryout/1/soaltryout', function () {
+//     return view('soaltryout', [
+//         "title" => "SoalTryout",
+//     ]);
+// })->middleware('auth');
+
+Route::resource('/tryout/1/soaltryout', QuestionController::class);
 
 Route::resource('/users', UserController::class)->middleware('admin');
 

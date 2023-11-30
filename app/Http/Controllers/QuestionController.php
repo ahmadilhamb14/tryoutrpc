@@ -15,11 +15,10 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        // ke http://127.0.0.1:8000/tryout/kelola , bagaimana membedakan ketika di klik UTBK-SNBT dan SKD-CAT ?
-        // return view('tryout', [
-        //     'questions' => Question->get(),
-        //     "title" => "Questions"
-        // ]);
+        return view('soaltryout', [
+            'questions' => Question::all(),
+            "title" => "Soal Tryout"
+        ]);
     }
 
     /**
