@@ -12,6 +12,6 @@ class Tryout extends Model
     protected $table = 'tryouts';
 
     public function subtest() {
-        return $this->hashMany(SubTest::class);
+        return $this->hasMany(SubTest::class);
     }
 }

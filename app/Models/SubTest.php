@@ -15,7 +15,7 @@ class SubTest extends Model
         return $this->belongsTo(Tryout::class, 'id_tryout');
     }
     public function question() {
-        return $this->hashMany(Question::class);
+        return $this->hasMany(Question::class);
     }
 
 }
