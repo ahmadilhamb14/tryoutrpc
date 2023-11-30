@@ -27,34 +27,37 @@
     <center>
         <h5 class="mb-3"> Penalaran Matematika </h5>
     </center>
-    
-    <div class="container mt-2">
     @foreach($questions as $question)
-    <div class="card bg-warning p-3 mb-3">
-            <p class="card-title">{{ $loop->iteration }}. {{$question->question}}</p>
-            <div class="form-check mx-3">
-                <input type="radio" class="form-check-input" name="answer1" id="optionA1" value="A">
-                <label class="form-check-label" for="optionA1">A. {{$question->option_a}}</label>
-            </div>
-            <div class="form-check mx-3">
-                <input type="radio" class="form-check-input" name="answer1" id="optionB1" value="B">
-                <label class="form-check-label" for="optionB1">B. {{$question->option_b}}</label>
-            </div>
-            <div class="form-check mx-3">
-                <input type="radio" class="form-check-input" name="answer1" id="optionC1" value="C">
-                <label class="form-check-label" for="optionC1">C. {{$question->option_c}}</label>
-            </div>
-            <div class="form-check mx-3">
-                <input type="radio" class="form-check-input" name="answer1" id="optionD1" value="D">
-                <label class="form-check-label" for="optionD1">D. {{$question->option_d}}</label>
-            </div>
-            <div class="form-check mx-3">
-                <input type="radio" class="form-check-input" name="answer1" id="optionD1" value="D">
-                <label class="form-check-label" for="optionD1">E. {{$question->option_e}}</label>
-            </div>
-        </div>
-        @endforeach
-    
+    <table border="0" class="m-3 p-2 bg-warning d-flex rounded">
+        <tbody>   
+                <input type="hidden" name="id[]" value="{{$question->id}}">
+                <tr>
+                    <td align="justify">{{ $loop->iteration }}. {{$question->question}}</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td><input name="pilihan[{{$question->id}}]" type="radio" value="A" style="height:25px; width:25px; vertical-align: middle"> A. {{$question->option_a}}</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td><input name="pilihan[{{$question->id}}]" type="radio" value="B" style="height:25px; width:25px; vertical-align: middle"> B. {{$question->option_b}}</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td><input name="pilihan[{{$question->id}}]" type="radio" value="C" style="height:25px; width:25px; vertical-align: middle"> C. {{$question->option_c}}</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td><input name="pilihan[{{$question->id}}]" type="radio" value="D" style="height:25px; width:25px; vertical-align: middle"> D. {{$question->option_d}}</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td><input name="pilihan[{{$question->id}}]" type="radio" value="E" style="height:25px; width:25px; vertical-align: middle"> E. {{$question->option_e}}</td>
+                    <td> </td>
+                </tr>
+								</tbody>
+    </table>
+    @endforeach
     
     <center class="next-button-container">
         <button type="submit" class="btn btn-secondary mt-3">Selanjutnya</button>

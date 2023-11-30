@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\Tryout;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
 
@@ -13,10 +14,13 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Tryout $tryout)
     {
         return view('soaltryout', [
-            'questions' => Question::all(),
+            // 'questions' => Question::all(),
+            "questions" => Question::whereHas('subtest', function ($query) use ($tryout) {
+                $query->where('id_tryout', $tryout->id);
+            })->get(),
             "title" => "Soal Tryout"
         ]);
     }

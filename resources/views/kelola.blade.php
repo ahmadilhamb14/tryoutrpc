@@ -111,7 +111,7 @@
             @endforeach
         </tbody>
     </table> 
-    <a href="/tryout/1/soaltryout" class="btn btn-warning px-3 mt-4" >
+    <a href="/tryout/{{$tryout->id}}/soaltryout" class="btn btn-warning px-3 mt-4" >
         START
      </a>
 @endcan

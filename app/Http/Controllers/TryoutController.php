@@ -75,13 +75,18 @@ class TryoutController extends Controller
      */
     public function show(Tryout $tryout)
     {
+      
         return view('kelola', [
             "title" => "Kelola Tryout",
             "tryouts" => Tryout::find($tryout),
             // "tryouts" => Tryout::where('id', $tryout)->first(),
             // "subtests" => SubTest::where('id_tryout', $tryout)->get(),
-            "subtests" => SubTest::all(),
-            "questions" => Question::all()
+            "subtests" => SubTest::where('id_tryout', $tryout->id)->get(),
+            // "questions" => Question::where('subtest.id_tryout', $tryout->id)->get(),
+            "questions" => Question::whereHas('subtest', function ($query) use ($tryout) {
+                $query->where('id_tryout', $tryout->id);
+            })->get()
+            // "questions" => Question::all()
         ]);
     }
 
