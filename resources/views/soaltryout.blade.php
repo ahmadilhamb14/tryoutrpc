@@ -27,53 +27,33 @@
     <center>
         <h5 class="mb-3"> Penalaran Matematika </h5>
     </center>
-<div class="container mt-2">
+    
+    <div class="container mt-2">
+    @foreach($questions as $question)
     <div class="card bg-warning p-3 mb-3">
-            <p class="card-title">1. Pertanyaan nomor satu................</p>
+            <p class="card-title">{{ $loop->iteration }}. {{$question->question}}</p>
             <div class="form-check mx-3">
                 <input type="radio" class="form-check-input" name="answer1" id="optionA1" value="A">
-                <label class="form-check-label" for="optionA1">A. Pilihan A</label>
+                <label class="form-check-label" for="optionA1">A. {{$question->option_a}}</label>
             </div>
             <div class="form-check mx-3">
                 <input type="radio" class="form-check-input" name="answer1" id="optionB1" value="B">
-                <label class="form-check-label" for="optionB1">B. Pilihan B</label>
+                <label class="form-check-label" for="optionB1">B. {{$question->option_b}}</label>
             </div>
             <div class="form-check mx-3">
                 <input type="radio" class="form-check-input" name="answer1" id="optionC1" value="C">
-                <label class="form-check-label" for="optionC1">C. Pilihan C</label>
+                <label class="form-check-label" for="optionC1">C. {{$question->option_c}}</label>
             </div>
             <div class="form-check mx-3">
                 <input type="radio" class="form-check-input" name="answer1" id="optionD1" value="D">
-                <label class="form-check-label" for="optionD1">D. Pilihan D</label>
+                <label class="form-check-label" for="optionD1">D. {{$question->option_d}}</label>
             </div>
             <div class="form-check mx-3">
                 <input type="radio" class="form-check-input" name="answer1" id="optionD1" value="D">
-                <label class="form-check-label" for="optionD1">E. Pilihan E</label>
+                <label class="form-check-label" for="optionD1">E. {{$question->option_e}}</label>
             </div>
-    </div>
-    <div class="card bg-warning p-3 mb-3">
-        <p class="card-title">2. Pertanyaan nomor dua................</p>
-        <div class="form-check mx-3">
-            <input type="radio" class="form-check-input" name="answer1" id="optionA1" value="A">
-            <label class="form-check-label" for="optionA1">A. Pilihan A</label>
         </div>
-        <div class="form-check mx-3">
-            <input type="radio" class="form-check-input" name="answer1" id="optionB1" value="B">
-            <label class="form-check-label" for="optionB1">B. Pilihan B</label>
-        </div>
-        <div class="form-check mx-3">
-            <input type="radio" class="form-check-input" name="answer1" id="optionC1" value="C">
-            <label class="form-check-label" for="optionC1">C. Pilihan C</label>
-        </div>
-        <div class="form-check mx-3">
-            <input type="radio" class="form-check-input" name="answer1" id="optionD1" value="D">
-            <label class="form-check-label" for="optionD1">D. Pilihan D</label>
-        </div>
-        <div class="form-check mx-3">
-            <input type="radio" class="form-check-input" name="answer1" id="optionD1" value="D">
-            <label class="form-check-label" for="optionD1">E. Pilihan E</label>
-        </div>
-    </div>
+        @endforeach
     
     
     <center class="next-button-container">
