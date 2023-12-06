@@ -1,60 +1,68 @@
-<!-- Mengambil Layout utama -->
 @extends('dashboard.layouts.main')
 
 @section('container')
 <div class="m-3">
     @foreach ($tryouts as $tryout)
-    <h3 class="">Tambah Soal Tryout {{$tryout['tryout']}}</h3>
+    <h3 class="">Edit Soal Tryout {{$tryout['tryout']}}</h3>
     @endforeach
     <br>
-    <form action="/tryout/{{$tryout->id}}/soaltryout" method="post">
-        <input type="hidden" value="{{$tryout->id}}" name="id_tryout">
+    <form action="/tryout/{{$tryout->id}}/soaltryout/{{$questions->id}}" method="post">
+        @method('put')
         @csrf
+        <input type="hidden" value="{{$tryout->id}}" name="id_tryout">
         <div>
             <label for="question">Soal</label>
-            <trix-editor input="textarea"></trix-editor>
-            <input id="textarea" type="hidden" name="question">
+            <input id="question" type="hidden" name="question" value="{{ old('question', $questions->question) }}">
+            <trix-editor input="question">
+            </trix-editor>
+            
+            
         </div>
-
         <div class="my-5">
             <label for="id_subtest" class="col-form-label">Subtes</label>
             <div>
-                <select class="form-select" name="subtest_id">
-                    @foreach($subtests as $subtest)
-                    @if(old('subtest_id') == $subtest->id)
-                    <option value="{{ $subtest->id }}" selected>{{ $subtest->subtes }}</option>
+              <select class="form-select" name="id_subtest" id="id_subtest">
+                @foreach($subtests as $subtest)
+                    @if(old('id_subtest',  $subtest->id) ==  $questions->subtest->id)
+                    <option value="{{ $questions->subtest->id }}" selected>{{ $questions->subtest->subtes }}</option>
                     @else
                     <option value="{{ $subtest->id }}">{{ $subtest->subtes }}</option>
                     @endif
-                    @endforeach
-                </select>
+                @endforeach
+              </select>
+              {{-- <select class="form-control" name="id_subtest" id="id_subtest">
+                @foreach($subtests as $subtest)
+                    <option value="{{ $subtest->id }}" {{ (old('id_subtest', optional($questions->subtest)->id) == $subtest->id) ? 'selected' : '' }}>
+                        {{ $subtest->subtes }}
+                    </option>
+                @endforeach
+            </select> --}}
             </div>
           </div>
-
         <div class="my-5">
             <label for="option_a">Pilihan A</label>
-            <trix-editor input="option_a"></trix-editor>
-            <input id="option_a" type="hidden" name="option_a">
+            <input id="a" type="hidden" name="option_a" value="{{ old('option_a', $questions->option_a) }}">
+            <trix-editor input="a"></trix-editor>
         </div>
         <div class="my-5">
             <label for="option_b">Piliihan B</label>
-            <trix-editor input="option_b"></trix-editor>
-            <input id="option_b" type="hidden" name="option_b">
+            <input id="b" type="hidden" name="option_b" value="{{ old('option_b', $questions->option_b) }}">
+            <trix-editor input="b"></trix-editor>
         </div>
         <div class="my-5">
             <label for="option_c">Pilihan C</label>
-            <trix-editor input="option_c"></trix-editor>
-            <input id="option_c" type="hidden" name="option_c">
+            <input id="c" type="hidden" name="option_c" value="{{ old('option_c', $questions->option_c) }}">
+            <trix-editor input="c"></trix-editor>
         </div>
         <div class="my-5">
             <label for="option_d">Pilihan D</label>
-            <trix-editor input="option_d"></trix-editor>
-            <input id="option_d" type="hidden" name="option_d">
+            <input id="d" type="hidden" name="option_d" value="{{ old('option_d', $questions->option_d) }}">
+            <trix-editor input="d"></trix-editor>
         </div>
         <div class="my-5">
             <label for="option_e">Pilihan E</label>
-            <trix-editor input="option_e"></trix-editor>
-            <input id="option_e" type="hidden" name="option_e">
+            <input id="e" type="hidden" name="option_e" value="{{ old('option_e', $questions->option_e) }}">
+            <trix-editor input="e"></trix-editor>
         </div>
         <div>
             <label for="option_key">Jawaban</label>
@@ -90,37 +98,17 @@
                 </label>
             </div>
         </div>
-        {{-- <div class="my-5">
+        <div class="my-5">
             <label for="image" class="form-label">Gambar</label>
             <img class="img-preview img-fluid mb-3 col-sm-5">
-            <input class="form-control" type="file" id="image" name="image">
             <input class="form-control" type="file" id="image" name="image" onchange=previewImage()>
-        </div> --}}
+        </div>
         <br>
         <center>
         <div>
-            <button class="btn btn-primary" type="submit" href="">Simpan</button>
+            <button href="/tryout" class="btn btn-primary" type="submit">Simpan</button>
         </div>
         </center>
     </form>
 </div>
-
-
-{{-- <script>
-    function previewImage() {
-    // Ambil Gambar
-    const image = document.querySelector('#image');
-    const imgPreview = document.querySelector(img-preview);
-
-    imgPreview.style.display = 'block';
-
-    const oFReader = new FileReader();
-    oFReader.readAsDataURL(image.files[0]);
-
-    oFReader.onload = function(oFREvent) {
-      imgPreview.src = oFREvent.target.result;
-    }
-    }
-</script> --}}
-
 @endsection

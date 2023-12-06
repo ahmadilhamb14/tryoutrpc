@@ -31,10 +31,6 @@ class TryoutController extends Controller
      */
     public function create()
     {
-        return view('tambahsoal', [
-            "title" => "Tambah Soal",
-        ]);
-        
     }
 
     /**
@@ -121,6 +117,6 @@ class TryoutController extends Controller
      */
     public function destroy(Tryout $tryout)
     {
-        //
+        
     }
 }

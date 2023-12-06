@@ -6,7 +6,14 @@
     @foreach ($tryouts as $tryout)
     <h4 class="">{{$tryout['tryout']}}</h4>
     @endforeach
-    <a href="/tryout/create" class="btn btn-primary mb-3 px-2"  >
+    @if(session()->has('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ session('success') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    {{-- <a href="/tryout/create" class="btn btn-primary mb-3 px-2"  > --}}
+    <a href="/tryout/{{ $tryout->id }}/soaltryout/create" class="btn btn-primary mb-3 px-2"  >
         Tambah Soal
     </a>
     <div class="hack1">
@@ -65,11 +72,11 @@
                 <td>{{ $question->option_key }}</td>
                 <td>
                     <div>
-                        <a href="" class="badge bg-success"><span
+                        <a href="/tryout/{{ $tryout->id }}/soaltryout/{{ $question->id }}" class="badge bg-success"><span
                             data-feather="eye"></span></a>
-                        <a href="" class="badge bg-warning"><span
+                        <a href="/tryout/{{ $tryout->id }}/soaltryout/{{ $question->id }}/edit" class="badge bg-warning"><span
                             data-feather="edit"></span></a>
-                        <form action="" method="POST" class="d-inline">
+                        <form action="/tryout/{{ $tryout->id }}/soaltryout/{{ $question->id }}" method="POST" class="d-inline">
                         @method('delete')
                           @csrf
                             <button class="badge bg-danger border-0"

@@ -59,7 +59,9 @@ Route::get('/tryout/review', function () {
 //     ]);
 // })->middleware('auth');
 
-Route::resource('/tryout/{tryout:id}/soaltryout', QuestionController::class);
+Route::resource('/tryout/{tryout:id}/soaltryout', QuestionController::class)->middleware('admin');
+
+// Route::post('/tryout/{tryout:id}/soaltryout', [QuestionController::class, 'store']);
 
 Route::resource('/users', UserController::class)->middleware('admin');
 

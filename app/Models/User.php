@@ -50,5 +50,9 @@ class User extends Authenticatable
 {
     return $this->hasMany(Score::class);
 }
+public function getIsAdminAttribute()
+{
+    return $this->attributes['isAdmin'] == 1;
+}
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Tryout;
+use App\Models\SubTest;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
 
@@ -30,9 +31,14 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($tryout)
     {
-        //
+        return view('tambahsoal', [
+            "title" => "Tambah Soal",
+            "subtests" => SubTest::where('id_tryout', $tryout)->get(),
+            "tryouts" => Tryout::where('id', $tryout)->get()
+        ]);
+        
     }
 
     /**
@@ -43,7 +49,36 @@ class QuestionController extends Controller
      */
     public function store(StoreQuestionRequest $request)
     {
-        //
+
+    $id = $request->id_tryout;
+        
+    $cleanedData = [
+        'question' => $request->question,
+        'id_subtest' => $request->subtest_id,
+        'option_a' => $request->option_a,
+        'option_b' => $request->option_b,
+        'option_c' => $request->option_c,
+        'option_d' => $request->option_d,
+        'option_e' => $request->option_e,
+        'option_key' => $request->option_key,
+    ];
+        // $validatedData = $request->validate([            
+        //     'question' => 'required', 
+        //     'id_subtest' => 'required',   
+        //     'option_a' => 'required',   
+        //     'option_b' => 'required',
+        //     'option_c' => 'required',
+        //     'option_d' => 'required',
+        //     'option_e' => 'required',
+        //     'option_key' => 'required'
+        // ]);
+
+        // dd($cleanedData);
+        
+        Question::create($cleanedData);
+
+        // return back()->with('success', 'Berhasil Menambahkan Soal');
+        return redirect("/tryout/{$id}")->with('success', 'Berhasil Menambahkan Soal');
     }
 
     /**
@@ -52,9 +87,15 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show($tryout, $question)
     {
-        //
+        return view('lihatsoal', [
+            "title" => "Soal Tryout",
+            "subtests" => SubTest::all(),
+            "tryouts" => Tryout::where('id', $tryout)->get(),
+            // "questions" => Question::where('subtest.id_tryout', $tryout->id)->get(),
+            "questions" => Question::where('id', $question)->first()
+        ]);  
     }
 
     /**
@@ -63,9 +104,17 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit($tryout, $question)
     {
-        //
+        return view('editsoal', [
+            'title' => "Edit Soal",
+            "subtests" => SubTest::where('id_tryout', $tryout)->get(),
+            // "questions" => Question::whereHas('subtest', function ($query) use ($tryout) {
+            //     $query->where('id_tryout', $tryout);
+            // })->get()
+            "tryouts" => Tryout::where('id', $tryout)->get(),
+            "questions" => Question::where('id', $question)->first()
+        ]);
     }
 
     /**
@@ -77,7 +126,22 @@ class QuestionController extends Controller
      */
     public function update(UpdateQuestionRequest $request, Question $question)
     {
-        //
+        dd($request->subtest_id);
+        $id = $request->id_tryout;
+        $rules = [
+            'question' => $request->question,
+            'id_subtest' => $request->subtest_id,
+            'option_a' => $request->option_a,
+            'option_b' => $request->option_b,
+            'option_c' => $request->option_c,
+            'option_d' => $request->option_d,
+            'option_e' => $request->option_e,
+            'option_key' => $request->option_key,
+        ];
+
+        $validatedData = $request->validate($rules);
+        Question::where('id', $question->id)->update($validatedData);
+        return redirect("/tryout/{$id}")->with('success', 'Data Soal Tryout berhasil diupdate!');
     }
 
     /**
@@ -86,8 +150,12 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy($tryout, $question)
     {
-        //
+        Question::destroy($question);
+
+        return back()->with('success', 'Berhasil Menghapus Soal!');
+
+        // return redirect('/tryout/{{ $tryout->id }}')->with('success', 'Berhasil Menghapus Soal!');
     }
 }
