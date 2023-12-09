@@ -40,33 +40,39 @@
                 <td scope="row">{{ $loop->iteration }}</td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    {{ $question->question }}
+                    {{ strip_tags($question->question) }}
                     </div>
                 </td>
                 <td>{{ $question->subtest->subtes }}</td>
-                <td>foto.jpg</td>
+                <td>
+                    @if ($question->image)
+                    <img src="{{ asset('storage/post-images/' . $question->image) }}" alt="" width="100">
+                    @else
+                    Tidak ada gambar
+                    @endif
+                </td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    {{ $question->option_a }}
+                    {{ strip_tags($question->option_a) }}
                     </div>
                 </td>
                 <td><div class="text-nowrap overflow-x-hidden text-truncate">
-                    {{ $question->option_b }}
+                    {{ strip_tags($question->option_b) }}
                     </div>
                 </td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    {{ $question->option_c }}
+                    {{ strip_tags($question->option_c) }}
                     </div>
                 </td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    {{ $question->option_d }}
+                    {{ strip_tags($question->option_d) }}
                     </div>
                 </td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    {{ $question->option_e }}
+                    {{ strip_tags($question->option_e) }}
                     </div>
                 </td>
                 <td>{{ $question->option_key }}</td>

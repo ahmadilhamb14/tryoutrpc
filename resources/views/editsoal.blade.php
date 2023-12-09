@@ -6,10 +6,11 @@
     <h3 class="">Edit Soal Tryout {{$tryout['tryout']}}</h3>
     @endforeach
     <br>
-    <form action="/tryout/{{$tryout->id}}/soaltryout/{{$questions->id}}" method="post">
+    <form action="/tryout/{{$tryout->id}}/soaltryout/{{$questions->id}}" method="post" enctype="multipart/form-data">
         @method('put')
         @csrf
         <input type="hidden" value="{{$tryout->id}}" name="id_tryout">
+        <input type="hidden" value="{{$questions->id}}" name="id_question">
         <div>
             <label for="question">Soal</label>
             <input id="question" type="hidden" name="question" value="{{ old('question', $questions->question) }}">
@@ -24,9 +25,9 @@
               <select class="form-select" name="id_subtest" id="id_subtest">
                 @foreach($subtests as $subtest)
                     @if(old('id_subtest',  $subtest->id) ==  $questions->subtest->id)
-                    <option value="{{ $questions->subtest->id }}" selected>{{ $questions->subtest->subtes }}</option>
+                        <option value="{{ $subtest->id }}" selected>{{ $questions->subtest->id }}</option>
                     @else
-                    <option value="{{ $subtest->id }}">{{ $subtest->subtes }}</option>
+                        <option value="{{ $subtest->id }}">{{ $subtest->id }}</option>
                     @endif
                 @endforeach
               </select>
@@ -65,7 +66,7 @@
             <trix-editor input="e"></trix-editor>
         </div>
         <div>
-            <label for="option_key">Jawaban</label>
+            {{-- <label for="option_key">Jawaban</label>
             <br>
             <div class="form-check-inline">
                 <input class="form-check-input" type="radio" name="option_key" id="option_key1" value="A">
@@ -97,13 +98,56 @@
                     E
                 </label>
             </div>
-        </div>
+        </div> --}}
+        <label for="option_key">Jawaban</label>
+<br>
+<div class="form-check-inline">
+    <input class="form-check-input" type="radio" name="option_key" id="option_key1" value="A" {{ $questions->option_key === 'A' ? 'checked' : '' }}>
+    <label class="form-check-label" for="option_key1">
+        A
+    </label>
+</div>
+<div class="form-check-inline">
+    <input class="form-check-input" type="radio" name="option_key" id="option_key2" value="B" {{ $questions->option_key === 'B' ? 'checked' : '' }}>
+    <label class="form-check-label" for="option_key2">
+        B
+    </label>
+</div>
+<div class="form-check-inline">
+    <input class="form-check-input" type="radio" name="option_key" id="option_key3" value="C" {{ $questions->option_key === 'C' ? 'checked' : '' }}>
+    <label class="form-check-label" for="option_key3">
+        C
+    </label>
+</div>
+<div class="form-check-inline">
+    <input class="form-check-input" type="radio" name="option_key" id="option_key4" value="D" {{ $questions->option_key === 'D' ? 'checked' : '' }}>
+    <label class="form-check-label" for="option_key4">
+        D
+    </label>
+</div>
+<div class="form-check-inline">
+    <input class="form-check-input" type="radio" name="option_key" id="option_key5" value="E" {{ $questions->option_key === 'E' ? 'checked' : '' }}>
+    <label class="form-check-label" for="option_key5">
+        E
+    </label>
+</div>
         <div class="my-5">
+            @if ($questions->image)
+            <label for="image">Gambar Saat Ini:</label><br><br>
+            <img src="{{ asset('storage/post-images/' . $questions->image) }}" alt="Gambar Saat Ini" width="400">
+            <br><br>
+            <label for="image" class="form-label">Pilih Gambar Baru</label>
+            <br>
+            <img class="img-preview img-fluid mb-3 col-sm-5">
+            <input class="form-control" type="file" id="image" name="new_image" onchange=previewImage()>
+            @else
             <label for="image" class="form-label">Gambar</label>
+            <br>
             <img class="img-preview img-fluid mb-3 col-sm-5">
             <input class="form-control" type="file" id="image" name="image" onchange=previewImage()>
+            @endif
         </div>
-        <br>
+
         <center>
         <div>
             <button href="/tryout" class="btn btn-primary" type="submit">Simpan</button>
@@ -111,4 +155,40 @@
         </center>
     </form>
 </div>
+
+<script>
+    function previewImage() {
+        var input = document.getElementById('image');
+        var preview = document.querySelector('.img-preview');
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.src = '';
+        }
+    }
+    // Optional: If you are using jQuery, you can simplify the code
+    // $('#image').change(function () {
+    //     var input = this;
+    //     var preview = $('.img-preview');
+
+    //     if (input.files && input.files[0]) {
+    //         var reader = new FileReader();
+
+    //         reader.onload = function (e) {
+    //             preview.attr('src', e.target.result);
+    //         };
+
+    //         reader.readAsDataURL(input.files[0]);
+    //     } else {
+    //         preview.attr('src', '');
+    //     }
+    // });
+</script>
 @endsection

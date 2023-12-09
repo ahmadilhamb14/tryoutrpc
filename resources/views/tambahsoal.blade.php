@@ -7,7 +7,7 @@
     <h3 class="">Tambah Soal Tryout {{$tryout['tryout']}}</h3>
     @endforeach
     <br>
-    <form action="/tryout/{{$tryout->id}}/soaltryout" method="post">
+    <form action="/tryout/{{$tryout->id}}/soaltryout" method="post" enctype="multipart/form-data">
         <input type="hidden" value="{{$tryout->id}}" name="id_tryout">
         @csrf
         <div>
@@ -19,9 +19,9 @@
         <div class="my-5">
             <label for="id_subtest" class="col-form-label">Subtes</label>
             <div>
-                <select class="form-select" name="subtest_id">
+                <select class="form-select" name="id_subtest">
                     @foreach($subtests as $subtest)
-                    @if(old('subtest_id') == $subtest->id)
+                    @if(old('id_subtest') == $subtest->id)
                     <option value="{{ $subtest->id }}" selected>{{ $subtest->subtes }}</option>
                     @else
                     <option value="{{ $subtest->id }}">{{ $subtest->subtes }}</option>
@@ -90,12 +90,12 @@
                 </label>
             </div>
         </div>
-        {{-- <div class="my-5">
+        <div class="my-5">
             <label for="image" class="form-label">Gambar</label>
+            <br>
             <img class="img-preview img-fluid mb-3 col-sm-5">
-            <input class="form-control" type="file" id="image" name="image">
             <input class="form-control" type="file" id="image" name="image" onchange=previewImage()>
-        </div> --}}
+        </div>
         <br>
         <center>
         <div>
@@ -122,5 +122,42 @@
     }
     }
 </script> --}}
+
+<script>
+    function previewImage() {
+        var input = document.getElementById('image');
+        var preview = document.querySelector('.img-preview');
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.src = '';
+        }
+    }
+
+    // Optional: If you are using jQuery, you can simplify the code
+    // $('#image').change(function () {
+    //     var input = this;
+    //     var preview = $('.img-preview');
+
+    //     if (input.files && input.files[0]) {
+    //         var reader = new FileReader();
+
+    //         reader.onload = function (e) {
+    //             preview.attr('src', e.target.result);
+    //         };
+
+    //         reader.readAsDataURL(input.files[0]);
+    //     } else {
+    //         preview.attr('src', '');
+    //     }
+    // });
+</script>
 
 @endsection
