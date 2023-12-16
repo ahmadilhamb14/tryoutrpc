@@ -61,6 +61,11 @@ Route::get('/tryout/review', function () {
 
 Route::resource('/tryout/{tryout:id}/soaltryout', QuestionController::class)->middleware('admin');
 
+Route::get('/tryout/{tryout:id}/test', [QuestionController::class, 'test'])->middleware('auth');
+Route::post('/submit-answer', [QuestionController::class, 'submitAnswer']);
+
+Route::post('/tryout/{tryout:id}/test', [QuestionController::class, 'jawab']);
+
 // Route::post('/tryout/{tryout:id}/soaltryout', [QuestionController::class, 'store']);
 
 Route::resource('/users', UserController::class)->middleware('admin');
@@ -74,6 +79,7 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login')->
 Route::post('/signin', [RegisterController::class, 'store'])->middleware('guest');
 
 Route::resource('/results', ScoreController::class)->middleware('auth');
+Route::post('/results/detail', [ScoreController::class, 'show'])->middleware('auth');
 
 // Route::get('/profile', function () {
 //     return view('profile', [

@@ -124,9 +124,10 @@
             @endforeach
         </tbody>
     </table> 
-    <a href="/tryout/{{$tryout->id}}/soaltryout" class="btn btn-warning px-3 mt-4" >
-        START
-     </a>
+    @php
+    $firstSubtestId = ($tryout->id == 1) ? 1 : 8;
+    @endphp
+    <a href="/tryout/{{$tryout->id}}/test?subtest={{ $firstSubtestId }}" class="btn btn-warning px-3 mt-4">START</a>
 @endcan
 </div>
 @endsection

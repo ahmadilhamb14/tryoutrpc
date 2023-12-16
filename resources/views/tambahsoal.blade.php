@@ -33,27 +33,27 @@
 
         <div class="my-5">
             <label for="option_a">Pilihan A</label>
-            <trix-editor input="option_a"></trix-editor>
+            <trix-editor input="option_a" data-direct-upload-url="/tryout/{{$tryout->id}}/soaltryout"></trix-editor>
             <input id="option_a" type="hidden" name="option_a">
         </div>
         <div class="my-5">
             <label for="option_b">Piliihan B</label>
-            <trix-editor input="option_b"></trix-editor>
+            <trix-editor input="option_b" data-direct-upload-url="/tryout/{{$tryout->id}}/soaltryout"></trix-editor>
             <input id="option_b" type="hidden" name="option_b">
         </div>
         <div class="my-5">
             <label for="option_c">Pilihan C</label>
-            <trix-editor input="option_c"></trix-editor>
+            <trix-editor input="option_c" data-direct-upload-url="/tryout/{{$tryout->id}}/soaltryout"></trix-editor>
             <input id="option_c" type="hidden" name="option_c">
         </div>
         <div class="my-5">
             <label for="option_d">Pilihan D</label>
-            <trix-editor input="option_d"></trix-editor>
+            <trix-editor input="option_d" data-direct-upload-url="/tryout/{{$tryout->id}}/soaltryout"></trix-editor>
             <input id="option_d" type="hidden" name="option_d">
         </div>
         <div class="my-5">
             <label for="option_e">Pilihan E</label>
-            <trix-editor input="option_e"></trix-editor>
+            <trix-editor input="option_e" data-direct-upload-url="/tryout/{{$tryout->id}}/soaltryout"></trix-editor>
             <input id="option_e" type="hidden" name="option_e">
         </div>
         <div>

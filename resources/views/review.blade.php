@@ -22,7 +22,7 @@
             </tr>
         </tbody>
     </table> 
-    <a href="soaltryout" type="submit" class="btn btn-warning px-3 mt-4" >
+    <a href="test" type="submit" class="btn btn-warning px-3 mt-4" >
         START
      </a>
 </div>

@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use App\Models\Tryout;
 use App\Models\SubTest;
+use App\Models\Score;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
+use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
@@ -51,28 +54,8 @@ class QuestionController extends Controller
     public function store(StoreQuestionRequest $request)
     {
 
-        // dd(storage_path('app/public'), public_path(), env('FILESYSTEM_DISK'));
-        // php artisan storage:link <- Menghubungkan public storage dan aplikasi -> jalankan di terminal!
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image');
-        //     $imageName = time() . '.' . $image->getClientOriginalExtension();
-        //     $image->move(public_path('images'), $imageName);
-
-        // return request()->file('image')->store('post-images');
-
         $id = $request->id_tryout;
 
-        
-    // $cleanedData = [
-    //     'question' => $request->question,
-    //     'id_subtest' => $request->subtest_id,
-    //     'option_a' => $request->option_a,
-    //     'option_b' => $request->option_b,
-    //     'option_c' => $request->option_c,
-    //     'option_d' => $request->option_d,
-    //     'option_e' => $request->option_e,
-    //     'option_key' => $request->option_key,
-    // ];
         $validatedData = request()->validate([            
             'question' => 'required', 
             'id_subtest' => 'required',   
@@ -95,29 +78,9 @@ class QuestionController extends Controller
             // Simpan nama file ke dalam database
             $validatedData['image'] = $fileName;
         }
-
-        // if ($request->file('image')) {
-        //     $validatedData['image'] = $request->file->store('post-images');
-        // }
-
-        // if (request()->file('image')) {
-        //     $validateData['image'] = request()->file('image')->store('post-images', 'public');
-        // }
-        
-
-
-        // $validatedData['question'] = strip_tags(request()->body);
-        // $validatedData['option_a'] = strip_tags(request()->body);
-        // $validatedData['option_b'] = strip_tags(request()->body);
-        // $validatedData['option_c'] = strip_tags(request()->body);
-        // $validatedData['option_d'] = strip_tags(request()->body);
-        // $validatedData['option_e'] = strip_tags(request()->body);
-
-        // dd($validatedData);
         
         Question::create($validatedData);
 
-        // return back()->with('success', 'Berhasil Menambahkan Soal');
         return redirect("/tryout/{$id}")->with('success', 'Berhasil Menambahkan Soal');
     }
 
@@ -149,9 +112,6 @@ class QuestionController extends Controller
         return view('editsoal', [
             'title' => "Edit Soal",
             "subtests" => SubTest::where('id_tryout', $tryout)->get(),
-            // "questions" => Question::whereHas('subtest', function ($query) use ($tryout) {
-            //     $query->where('id_tryout', $tryout);
-            // })->get()
             "tryouts" => Tryout::where('id', $tryout)->get(),
             "questions" => Question::where('id', $question)->first()
         ]);
@@ -184,12 +144,6 @@ class QuestionController extends Controller
             $request->image = $request->file('new_image')->store('post-images', 'public');
             $rules['image'] = $request->new_image;
         }
-        // } elseif ($request->hasFile('image')) {
-        //     $rules['image'] = $request->image;
-        // }
-        // else {
-            
-        // }
 
         if ($request->file('new_image')) {
             $uploadedFile = $request->file('new_image');
@@ -232,5 +186,113 @@ class QuestionController extends Controller
         return back()->with('success', 'Berhasil Menghapus Soal!');
 
         // return redirect('/tryout/{{ $tryout->id }}')->with('success', 'Berhasil Menghapus Soal!');
+    }
+
+    public function test(Tryout $tryout, Request $request)
+    {
+        // dd($request);
+        // return view('soaltryout', [
+            $subtestNumber = $request->input('subtest', 1);
+
+            // Ambil subtes berdasarkan ID Tryout dan nomor subtes
+            $subtest = Subtest::where('id_tryout', $tryout->id)
+                              ->where('id', $subtestNumber)
+                              ->first();
+        
+            // Periksa apakah subtes ditemukan
+            if (!$subtest) {
+                // Handle kasus ketika subtes tidak ditemukan
+                // Misalnya, tampilkan pesan kesalahan atau redirect ke halaman lain
+                return redirect()->route('route_name_for_error')->with('error', 'Subtest not found for this tryout.');
+            }
+    // $subtest = $subtests[$subtestNumber - 1]; // -1 karena indeks array dimulai dari 0
+    $title = "Soal Tryout";
+
+    // Ambil pertanyaan untuk subtes tertentu
+    // $questions = $subtest->questions;
+    $questions = $subtest->question;
+    // $questions = Question::where('id_subtest', $subtest['id'])->get();
+
+    return view('soaltryout', compact('questions', 'subtest', 'title', 'tryout'));
+    }
+
+    public function jawab(Tryout $tryout, Request $request) {
+      
+        $id_subtest = $request->id_subtes;
+
+        $idArray = $request->input('id');
+        $pilihanArray = $request->input('pilihan');
+        $score = 0;
+        $hasil = 0;
+
+        foreach ($idArray as $id) {
+            $question = Question::where('id', $id)
+                              ->where('id_subtest', $id_subtest)
+                              ->first();
+    
+            // Check if the question exists
+            if ($question) {
+                $answer = $question->option_key;
+    
+                // Check if the key exists in the pilihan array
+                if (isset($pilihanArray[$id])) {
+                    $submittedAnswer = $pilihanArray[$id];
+    
+                    // Use loose comparison if types may differ
+                    if ($submittedAnswer == $answer) {
+                        $score += 1;
+                        $hasil = $score * 10;
+                    }
+                }
+            }
+        }
+
+        $userId = Auth::id();
+
+        $rules = [
+            'id_user' => $userId,
+            'id_subtest' => $id_subtest,
+            'score' => $hasil,
+        ];
+
+        Score::create($rules);
+        $id_tryout = $tryout->id;
+        
+        $nextSubtestId = $id_subtest + 1;
+        if ($nextSubtestId == 8 && $id_tryout == 1 || $nextSubtestId == 11 && $id_tryout == 2){
+            return redirect("/results");
+        } else {
+            return redirect("/tryout/{$id_tryout}/test?subtest={$nextSubtestId}");
+        }
+        
+    }
+
+
+    public function submitAnswer(Request $request)
+    {
+        dd($request);
+        $questionId = $request->input('questionId');
+        $selectedOption = $request->input('selectedOption');
+        // $userAnswers = $request->input('answers');
+        // $subtestId = $request->input('subtestId');
+        // $tryoutId = $request->input('tryoutId');
+        // $score = 0;
+
+        // foreach ($userAnswers as $questionId => $userAnswer) {
+        //     $question = Question::find($questionId);
+
+        //     if ($question && $question->correct_answer === $userAnswer) {
+        //         $score += 1;
+        //     }
+        // }
+
+        // // Save the score to the database
+        // $userId = auth()->id(); // Assuming you have authentication
+        // $score = $score * 10;
+        // // Adjust the code based on your database structure
+        // // For example, you may have a table named 'user_scores'
+        // // $userScore = UserScore::create(['user_id' => $userId, 'tryout_id' => $tryoutId, 'subtest_id' => $subtestId, 'score' => $score]);
+
+        // return response()->json(['success' => true, 'message' => 'Answers submitted successfully']);
     }
 }

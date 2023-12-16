@@ -81,7 +81,9 @@ class TryoutController extends Controller
             // "questions" => Question::where('subtest.id_tryout', $tryout->id)->get(),
             "questions" => Question::whereHas('subtest', function ($query) use ($tryout) {
                 $query->where('id_tryout', $tryout->id);
-            })->get()
+            })
+            ->orderBy('id')
+            ->get()
             // "questions" => Question::all()
         ]);
     }

@@ -25,12 +25,15 @@
     <p id="timer" align="right" class="text-light p-3 bg-dark fixed-top">Sisa Waktu: 00:29:56</p>	
     <br><br><br>
     <center>
-        <h5 class="mb-3"> Penalaran Matematika </h5>
+        <h5 class="mb-3">{{ $subtest->subtes }} </h5>
     </center>
+    <form action="/tryout/{{$tryout->id}}/test" method="post">
+        @csrf
     @foreach($questions as $question)
     <table border="0" class="m-3 p-2 bg-warning d-flex rounded">
         <tbody>   
                 <input type="hidden" name="id[]" value="{{$question->id}}">
+                <input type="hidden" name="id_subtes" value="{{$subtest->id}}">
                 <tr>
                     <td align="justify">{{ $loop->iteration }}. {{$question->question}}</td>
                     <td> </td>
@@ -60,10 +63,75 @@
     @endforeach
     
     <center class="next-button-container">
-        <button type="submit" class="btn btn-secondary mt-3">Selanjutnya</button>
+        @php
+        $subtestId = $tryout->id;
+        @endphp
+        @if($subtestId==1)
+            @if ($subtest->id >= 7)
+            <button type="submit" class="btn btn-secondary mt-3">Selesai</button>
+            @else
+                <button type="submit" class="btn btn-secondary mt-3" onclick="nextSubtest()">Selanjutnya</button>
+            @endif
+        @else
+            @if ($subtest->id >= 10)
+            <button type="submit" class="btn btn-secondary mt-3">Selesai</button>
+            @else
+                <button type="submit" class="btn btn-secondary mt-3" onclick="nextSubtest()">Selanjutnya</button>
+            @endif
+        @endif
+
     </center>
+</form>
 </div>
 
 <script src="path/to/bootstrap.bundle.min.js"></script>
+<script>
+    
+    function nextSubtest() {
+        // submitAnswer();
+    // Simpan jawaban atau kemajuan pengguna ke backend (gunakan AJAX jika diperlukan)
+
+    // Pindahkan ke subtes berikutnya
+    var currentSubtest = getParameterByName('subtest');
+    var nextSubtest = parseInt(currentSubtest) + 1;
+    window.location.href = "/tryout/{{$tryout->id}}/test?subtest=" + nextSubtest;
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+function submitAnswer() {
+        $(document).ready(function () {
+        $('input[name^="pilihan"]').on('change', function () {
+            var questionId = $(this).closest('tbody').find('input[name="id[]"]').val();
+            var selectedOption = $(this).val();
+
+            // Send AJAX request to update the score
+            $.ajax({
+                url: '/submit-answer', // Replace with the actual endpoint
+                type: 'POST',
+                data: {
+                    questionId: questionId,
+                    selectedOption: selectedOption
+                },
+                success: function (response) {
+                    // Handle success response if needed
+                    console.log(response);
+                },
+                error: function (error) {
+                    // Handle error response if needed
+                    console.error(error);
+                }
+            });
+        });
+    });
+    }
+</script>
 </body>
 </html>
