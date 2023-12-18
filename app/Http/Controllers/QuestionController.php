@@ -53,20 +53,36 @@ class QuestionController extends Controller
      */
     public function store(StoreQuestionRequest $request)
     {
-
+        // dd($request);
         $id = $request->id_tryout;
 
         $validatedData = request()->validate([            
             'question' => 'required', 
             'id_subtest' => 'required',   
-            'option_a' => 'required',   
-            'option_b' => 'required',
-            'option_c' => 'required',
-            'option_d' => 'required',
-            'option_e' => 'required',
+            // 'option_a' => 'required',   
+            // 'option_b' => 'required',
+            // 'option_c' => 'required',
+            // 'option_d' => 'required',
+            // 'option_e' => 'required',
             'option_key' => 'required',
             'image' => 'image|file|max:1024'
         ]);
+
+        if($request->option_a){
+            $validatedData['option_a'] = $request->input('option_a');
+        }
+        if($request->option_b){
+            $validatedData['option_b'] = $request->input('option_b');
+        }
+        if($request->option_c){
+            $validatedData['option_c'] = $request->input('option_c');
+        }
+        if($request->option_d){
+            $validatedData['option_d'] = $request->input('option_d');
+        }
+        if($request->option_e){
+            $validatedData['option_e'] = $request->input('option_e');
+        }
 
         if ($request->file('image')) {
             $uploadedFile = $request->file('image');
@@ -78,7 +94,56 @@ class QuestionController extends Controller
             // Simpan nama file ke dalam database
             $validatedData['image'] = $fileName;
         }
+        if ($request->file('g_option_a')) {
+            $uploadedFile = $request->file('g_option_a');
+            $path = $uploadedFile->store('post-images', 'public');
         
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $validatedData['option_a'] = $fileName;
+        }
+        if ($request->file('g_option_b')) {
+            $uploadedFile = $request->file('g_option_b');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $validatedData['option_b'] = $fileName;
+        }
+        if ($request->file('g_option_c')) {
+            $uploadedFile = $request->file('g_option_c');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $validatedData['option_c'] = $fileName;
+        }
+        if ($request->file('g_option_d')) {
+            $uploadedFile = $request->file('g_option_d');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $validatedData['option_d'] = $fileName;
+        }
+        if ($request->file('g_option_e')) {
+            $uploadedFile = $request->file('g_option_e');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $validatedData['option_e'] = $fileName;
+        }
         Question::create($validatedData);
 
         return redirect("/tryout/{$id}")->with('success', 'Berhasil Menambahkan Soal');
@@ -126,16 +191,18 @@ class QuestionController extends Controller
      */
     public function update(UpdateQuestionRequest $request)
     {
+
+        // dd($request);
         $id = $request->id_tryout;
         $id1 = $request->id_question;
         $rules = [
             'question' => $request->question,
             'id_subtest' => $request->id_subtest,
-            'option_a' => $request->option_a,
-            'option_b' => $request->option_b,
-            'option_c' => $request->option_c,
-            'option_d' => $request->option_d,
-            'option_e' => $request->option_e,
+            // 'option_a' => $request->option_a,
+            // 'option_b' => $request->option_b,
+            // 'option_c' => $request->option_c,
+            // 'option_d' => $request->option_d,
+            // 'option_e' => $request->option_e,
             'option_key' => $request->option_key,
         ];
 
@@ -164,6 +231,175 @@ class QuestionController extends Controller
         
             // Simpan nama file ke dalam database
             $rules['image'] = $fileName;
+        }
+
+        // Pilihan A
+        if ($request->hasFile('new_g_option_a')) {
+            Storage::delete('post-images/' . $request->g_option_a);
+            $request->g_option_a = $request->file('new_g_option_a')->store('post-images', 'public');
+            $rules['option_a'] = $request->new_g_option_a;
+        }
+
+        if ($request->file('new_g_option_a')) {
+            // $request->option_a = '';
+            $uploadedFile = $request->file('new_g_option_a');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $rules['option_a'] = $fileName;
+        }
+        if ($request->file('g_option_a')) {
+            // $request->option_a = '';
+            $uploadedFile = $request->file('g_option_a');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $rules['option_a'] = $fileName;
+        }
+
+        // if ($request->option_a) {
+        //     $rules['option_a'] = $request->option_a;
+        // }
+
+        // Pilihan B
+        if ($request->hasFile('new_g_option_b')) {
+            Storage::delete('post-images/' . $request->g_option_b);
+            $request->g_option_b = $request->file('new_g_option_b')->store('post-images', 'public');
+            $rules['option_b'] = $request->new_g_option_b;
+        }
+
+        if ($request->file('new_g_option_b')) {
+            // $request->option_b = '';
+            $uploadedFile = $request->file('new_g_option_b');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $rules['option_b'] = $fileName;
+        }
+        if ($request->file('g_option_b')) {
+            // $request->option_b = '';
+            $uploadedFile = $request->file('g_option_b');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $rules['option_b'] = $fileName;
+        }
+
+        if ($request->option_b) {
+            $rules['option_b'] = $request->option_b;
+        }
+
+        // Pilihan C
+        if ($request->hasFile('new_g_option_c')) {
+            Storage::delete('post-images/' . $request->g_option_c);
+            $request->g_option_c = $request->file('new_g_option_c')->store('post-images', 'public');
+            $rules['option_c'] = $request->new_g_option_c;
+        }
+
+        if ($request->file('new_g_option_c')) {
+            // $request->option_c = '';
+            $uploadedFile = $request->file('new_g_option_c');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $rules['option_c'] = $fileName;
+        }
+        if ($request->file('g_option_c')) {
+            // $request->option_c = '';
+            $uploadedFile = $request->file('g_option_c');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $rules['option_c'] = $fileName;
+        }
+
+        if ($request->option_c) {
+            $rules['option_c'] = $request->option_c;
+        }
+
+        // Pilihan D
+        if ($request->hasFile('new_g_option_d')) {
+            Storage::delete('post-images/' . $request->g_option_d);
+            $request->g_option_d = $request->file('new_g_option_d')->store('post-images', 'public');
+            $rules['option_d'] = $request->new_g_option_d;
+        }
+
+        if ($request->file('new_g_option_d')) {
+            // $request->option_d = '';
+            $uploadedFile = $request->file('new_g_option_d');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $rules['option_d'] = $fileName;
+        }
+        if ($request->file('g_option_d')) {
+            // $request->option_d = '';
+            $uploadedFile = $request->file('g_option_d');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $rules['option_d'] = $fileName;
+        }
+
+        if ($request->option_d) {
+            $rules['option_d'] = $request->option_d;
+        }
+        // Pilihan E
+        if ($request->hasFile('new_g_option_e')) {
+            Storage::delete('post-images/' . $request->g_option_e);
+            $request->g_option_e = $request->file('new_g_option_e')->store('post-images', 'public');
+            $rules['option_e'] = $request->new_g_option_e;
+        }
+
+        if ($request->file('new_g_option_e')) {
+            // $request->option_e = '';
+            $uploadedFile = $request->file('new_g_option_e');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $rules['option_e'] = $fileName;
+        }
+        if ($request->file('g_option_e')) {
+            // $request->option_e = '';
+            $uploadedFile = $request->file('g_option_e');
+            $path = $uploadedFile->store('post-images', 'public');
+        
+            // Dapatkan nama file dari path
+            $fileName = basename($path);
+        
+            // Simpan nama file ke dalam database
+            $rules['option_e'] = $fileName;
+        }
+
+        if ($request->option_e) {
+            $rules['option_e'] = $request->option_e;
         }
     
         // Lakukan validasi atau operasi lainnya jika diperlukan

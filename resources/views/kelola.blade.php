@@ -40,7 +40,8 @@
                 <td scope="row">{{ $loop->iteration }}</td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    {{ strip_tags($question->question) }}
+                    {!!$question->question!!}
+                    {{-- {{ strip_tags($question->question) }} --}}
                     </div>
                 </td>
                 <td>{{ $question->subtest->subtes }}</td>
@@ -53,26 +54,46 @@
                 </td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    {{ strip_tags($question->option_a) }}
+                    @if (substr($question->option_a, -3) === 'png' || substr($question->option_a, -3) === 'jpg' || substr($question->option_a, -3) === 'peg')
+                    <img src="{{ asset('storage/post-images/' . $question->option_a) }}" alt="" width="100">
+                    @else
+                    {!!$question->option_a!!}
+                    @endif
                     </div>
                 </td>
                 <td><div class="text-nowrap overflow-x-hidden text-truncate">
-                    {{ strip_tags($question->option_b) }}
+                    @if (substr($question->option_b, -3) === 'png' || substr($question->option_b, -3) === 'jpg' || substr($question->option_b, -3) === 'peg')
+                    <img src="{{ asset('storage/post-images/' . $question->option_b) }}" alt="" width="100">
+                    @else
+                    {!!$question->option_b!!}
+                    @endif
                     </div>
                 </td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    {{ strip_tags($question->option_c) }}
+                        @if (substr($question->option_c, -3) === 'png' || substr($question->option_c, -3) === 'jpg' || substr($question->option_c, -3) === 'peg')
+                        <img src="{{ asset('storage/post-images/' . $question->option_c) }}" alt="" width="100">
+                        @else
+                        {!!$question->option_c!!}
+                        @endif
                     </div>
                 </td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    {{ strip_tags($question->option_d) }}
+                        @if (substr($question->option_d, -3) === 'png' || substr($question->option_d, -3) === 'jpg' || substr($question->option_d, -3) === 'peg')
+                        <img src="{{ asset('storage/post-images/' . $question->option_d) }}" alt="" width="100">
+                        @else
+                        {!!$question->option_d!!}
+                        @endif
                     </div>
                 </td>
                 <td>
                     <div class="text-nowrap overflow-x-hidden text-truncate">
-                    {{ strip_tags($question->option_e) }}
+                        @if (substr($question->option_e, -3) === 'png' || substr($question->option_e, -3) === 'jpg' || substr($question->option_e, -3) === 'peg')
+                        <img src="{{ asset('storage/post-images/' . $question->option_e) }}" alt="" width="100">
+                        @else
+                        {!!$question->option_e!!}
+                        @endif
                     </div>
                 </td>
                 <td>{{ $question->option_key }}</td>

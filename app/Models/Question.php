@@ -30,6 +30,11 @@ class Question extends Model
         'option_key'
     ];
 
+    // public function setOptionAAttribute($value)
+    // {
+    //     $this->attributes['option_a'] = $value;
+    // }
+
     public function subtest() {
         return $this->belongsTo(Subtest::class, 'id_subtest');
     }

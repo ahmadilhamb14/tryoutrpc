@@ -10,6 +10,12 @@
     <form action="/tryout/{{$tryout->id}}/soaltryout" method="post" enctype="multipart/form-data">
         <input type="hidden" value="{{$tryout->id}}" name="id_tryout">
         @csrf
+        <div class="mb-5">
+            <label for="image" class="form-label">Gambar</label>
+            <br>
+            <img class="img-preview img-fluid mb-3 col-sm-5">
+            <input class="form-control" type="file" id="image" name="image" onchange=previewImage()>
+        </div>
         <div>
             <label for="question">Soal</label>
             <trix-editor input="textarea"></trix-editor>
@@ -29,32 +35,67 @@
                     @endforeach
                 </select>
             </div>
-          </div>
+        </div>
 
-        <div class="my-5">
-            <label for="option_a">Pilihan A</label>
-            <trix-editor input="option_a" data-direct-upload-url="/tryout/{{$tryout->id}}/soaltryout"></trix-editor>
+        <p>Pilihan A</p>
+        <div class="mt-2">
+            <label for="option_a">Teks</label>
+            <trix-editor input="option_a"></trix-editor>
             <input id="option_a" type="hidden" name="option_a">
         </div>
-        <div class="my-5">
-            <label for="option_b">Piliihan B</label>
+        <div class="mt-2 mb-5">
+            <label for="g_option_a" class="form-label">Gambar</label>
+            <br>
+            <img class="img-previewA img-fluid col-sm-5">
+            <input class="form-control" type="file" id="g_option_a" name="g_option_a" onchange=previewImageA()>
+        </div>
+        <p>Pilihan B</p>
+        <div class="mt-2">
+            <label for="option_b">Teks</label>
             <trix-editor input="option_b" data-direct-upload-url="/tryout/{{$tryout->id}}/soaltryout"></trix-editor>
             <input id="option_b" type="hidden" name="option_b">
         </div>
-        <div class="my-5">
-            <label for="option_c">Pilihan C</label>
+        <div class="mt-2 mb-5">
+            <label for="g_option_b" class="form-label">Gambar</label>
+            <br>
+            <img class="img-previewB img-fluid col-sm-5">
+            <input class="form-control" type="file" id="g_option_b" name="g_option_b" onchange=previewImageB()>
+        </div>
+        <p>Pilihan C</p>
+        <div class="mt-2">
+            <label for="option_c">Teks</label>
             <trix-editor input="option_c" data-direct-upload-url="/tryout/{{$tryout->id}}/soaltryout"></trix-editor>
             <input id="option_c" type="hidden" name="option_c">
         </div>
-        <div class="my-5">
-            <label for="option_d">Pilihan D</label>
+        <div class="mt-2 mb-5">
+            <label for="g_option_c" class="form-label">Gambar</label>
+            <br>
+            <img class="img-previewC img-fluid col-sm-5">
+            <input class="form-control" type="file" id="g_option_c" name="g_option_c" onchange=previewImageC()>
+        </div>
+        <p>Pilihan D</p>
+        <div class="mt-2">
+            <label for="option_d">Teks</label>
             <trix-editor input="option_d" data-direct-upload-url="/tryout/{{$tryout->id}}/soaltryout"></trix-editor>
             <input id="option_d" type="hidden" name="option_d">
         </div>
-        <div class="my-5">
-            <label for="option_e">Pilihan E</label>
+        <div class="mt-2 mb-5">
+            <label for="g_option_d" class="form-label">Gambar</label>
+            <br>
+            <img class="img-previewD img-fluid col-sm-5">
+            <input class="form-control" type="file" id="g_option_d" name="g_option_d" onchange=previewImageD()>
+        </div>
+        <p>Pilihan E</p>
+        <div class="mt-2">
+            <label for="option_e">Teks</label>
             <trix-editor input="option_e" data-direct-upload-url="/tryout/{{$tryout->id}}/soaltryout"></trix-editor>
             <input id="option_e" type="hidden" name="option_e">
+        </div>
+        <div class="mt-2 mb-5">
+            <label for="g_option_e" class="form-label">Gambar</label>
+            <br>
+            <img class="img-previewE img-fluid col-sm-5">
+            <input class="form-control" type="file" id="g_option_e" name="g_option_e" onchange=previewImageE()>
         </div>
         <div>
             <label for="option_key">Jawaban</label>
@@ -90,12 +131,6 @@
                 </label>
             </div>
         </div>
-        <div class="my-5">
-            <label for="image" class="form-label">Gambar</label>
-            <br>
-            <img class="img-preview img-fluid mb-3 col-sm-5">
-            <input class="form-control" type="file" id="image" name="image" onchange=previewImage()>
-        </div>
         <br>
         <center>
         <div>
@@ -104,24 +139,6 @@
         </center>
     </form>
 </div>
-
-
-{{-- <script>
-    function previewImage() {
-    // Ambil Gambar
-    const image = document.querySelector('#image');
-    const imgPreview = document.querySelector(img-preview);
-
-    imgPreview.style.display = 'block';
-
-    const oFReader = new FileReader();
-    oFReader.readAsDataURL(image.files[0]);
-
-    oFReader.onload = function(oFREvent) {
-      imgPreview.src = oFREvent.target.result;
-    }
-    }
-</script> --}}
 
 <script>
     function previewImage() {
@@ -140,24 +157,87 @@
             preview.src = '';
         }
     }
+    function previewImageA() {
+        var optionA = document.getElementById('g_option_a');
+        var previewA = document.querySelector('.img-previewA');
 
-    // Optional: If you are using jQuery, you can simplify the code
-    // $('#image').change(function () {
-    //     var input = this;
-    //     var preview = $('.img-preview');
+        if (optionA.files && optionA.files[0]) {
+            var reader = new FileReader();
 
-    //     if (input.files && input.files[0]) {
-    //         var reader = new FileReader();
+            reader.onload = function (e) {
+                previewA.src = e.target.result;
+            };
 
-    //         reader.onload = function (e) {
-    //             preview.attr('src', e.target.result);
-    //         };
+            reader.readAsDataURL(optionA.files[0]);
+        } else {
+            previewA.src = '';
+        }
+    }
+    function previewImageB() {
+        var optionB = document.getElementById('g_option_b');
+        var previewB = document.querySelector('.img-previewB');
 
-    //         reader.readAsDataURL(input.files[0]);
-    //     } else {
-    //         preview.attr('src', '');
-    //     }
-    // });
+        if (optionB.files && optionB.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewB.src = e.target.result;
+            };
+
+            reader.readAsDataURL(optionB.files[0]);
+        } else {
+            previewB.src = '';
+        }
+    }
+    function previewImageC() {
+        var optionC = document.getElementById('g_option_c');
+        var previewC = document.querySelector('.img-previewC');
+
+        if (optionC.files && optionC.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewC.src = e.target.result;
+            };
+
+            reader.readAsDataURL(optionC.files[0]);
+        } else {
+            previewC.src = '';
+        }
+    }
+    function previewImageD() {
+        var optionD = document.getElementById('g_option_d');
+        var previewD = document.querySelector('.img-previewD');
+
+        if (optionD.files && optionD.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewD.src = e.target.result;
+            };
+
+            reader.readAsDataURL(optionD.files[0]);
+        } else {
+            previewD.src = '';
+        }
+    }
+    function previewImageE() {
+        var optionE = document.getElementById('g_option_e');
+        var previewE = document.querySelector('.img-previewE');
+
+        if (optionE.files && optionE.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewE.src = e.target.result;
+            };
+
+            reader.readAsDataURL(optionE.files[0]);
+        } else {
+            previewE.src = '';
+        }
+    }
+
 </script>
 
 @endsection
