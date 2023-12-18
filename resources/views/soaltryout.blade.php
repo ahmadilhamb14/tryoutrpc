@@ -20,14 +20,117 @@
     </style>
 
     <title>Review Tryout</title>
+
+        <script
+			src="https://code.jquery.com/jquery-1.10.2.min.js"
+			type="text/javascript"
+		></script>
+
+        <?php 
+        $waktu = date('s', strtotime($subtest['timer']));
+        $subtestId = $tryout->id;
+        ?>
+		<!-- Script Timer -->
+		<script type="text/javascript">
+			$(document).ready(function () {
+				/** Membuat Waktu Mulai Hitung Mundur Dengan
+				 * var detik = 0,
+				 * var menit = 1,
+				 * var jam = 1
+				 */
+				var detik = 0;
+				// var menit = 30;
+				var menit = <?php echo $waktu; ?>;
+                // var menit = 0;
+				var jam = 0;
+
+				/**
+				 * Membuat function hitung() sebagai Penghitungan Waktu
+				 */
+				function hitung() {
+					/** setTimout(hitung, 1000) digunakan untuk
+					 * mengulang atau merefresh halaman selama 1000 (1 detik)
+					 */
+					setTimeout(hitung, 1000);
+
+					/** Jika waktu kurang dari 10 menit maka Timer akan berubah menjadi warna merah */
+					// if (menit < 1 && jam == 0) {
+					// 	var peringatan = style="color:red";
+					// }
+
+					/** Menampilkan Waktu Timer pada Tag #Timer di HTML yang tersedia */
+					$("#timer").html(
+				// 		// '<h6 align="right"' +
+				// 		// 	peringatan +
+				// 		// 	">Sisa waktu anda : &nbsp;&nbsp;&nbsp;" +
+				// 		// 	jam +
+				// 		// 	" jam : " +
+				// 		// 	menit +
+				// 		// 	" menit : " +
+				// 		// 	detik +
+				// 		// 	" detik</h6>"
+							"Sisa waktu anda : &nbsp;&nbsp;&nbsp;" +
+							jam +
+							" jam : " +
+							menit +
+							" menit : " +
+							detik +
+							" detik"
+					);
+					
+					/** Melakukan Hitung Mundur dengan Mengurangi variabel detik - 1 */
+					detik--;
+
+					/** Jika var detik < 0
+					 * var detik akan dikembalikan ke 59
+					 * Menit akan Berkurang 1
+					 */
+					if (detik < 0) {
+						detik = 59;
+						menit--;
+
+						/** Jika menit < 0
+						 * Maka menit akan dikembali ke 59
+						 * Jam akan Berkurang 1
+						 */
+						if (menit < 0) {
+							menit = 59;
+							jam--;
+
+							/** Jika var jam < 0
+							 * clearInterval() Memberhentikan Interval dan submit secara otomatis
+							 */
+							if (jam < 0) {
+								clearInterval();
+								/** Variable yang digunakan untuk submit secara otomatis di Form */
+								// var frmSoal = document.getElementById("frmSoal");
+                                var subtestId = <?php echo $subtestId; ?>;
+                                var submitBtn = document.getElementById("next");
+                                        submitBtn.click();
+							}
+						}
+					}
+				}
+				/** Menjalankan Function Hitung Waktu Mundur */
+				hitung();
+			});
+			// ]]>
+
+		</script>
 </head>
 <body>
-    <p id="timer" align="right" class="text-light p-3 bg-dark fixed-top">Sisa Waktu: 00:29:56</p>	
+    <p id="timer" align="right" class="text-light p-3 bg-dark fixed-top">Sisa Waktu: 00:00:00</p>	
     <br><br><br>
     <center>
+        @if(session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <h5 class="mb-3">{{ $subtest->subtes }} </h5>
     </center>
-    <form action="/tryout/{{$tryout->id}}/test" method="post">
+    <form id="form" action="/tryout/{{$tryout->id}}/test" method="post">
         @csrf
     @foreach($questions as $question)
     <table border="0" class="m-3 p-2 bg-warning d-flex rounded">
@@ -35,30 +138,73 @@
                 <input type="hidden" name="id[]" value="{{$question->id}}">
                 <input type="hidden" name="id_subtes" value="{{$subtest->id}}">
                 <tr>
-                    <td align="justify">{{ $loop->iteration }}. {{$question->question}}</td>
-                    <td> </td>
+                    @if ($question->image)
+                    <td align="justify">{{ $loop->iteration }}. 
+                        <img class="mb-2" src="{{ asset('storage/post-images/' . $question->image) }}" alt="Gambar" width="400">
+                        {!!$question->question!!}
+                    </td>
+                    <td></td>
+                    @else 
+                        <td style="display: flex" align="justify"><span class="mx-1">{{ $loop->iteration }}.</span> {!!$question->question!!} </td>
+                        <td></td>
+                    @endif 
                 </tr>
                 <tr>
-                    <td><input name="pilihan[{{$question->id}}]" type="radio" value="A" style="height:25px; width:25px; vertical-align: middle"> A. {{$question->option_a}}</td>
-                    <td> </td>
+                    @if (substr($question->option_a, -3) === 'png' || substr($question->option_a, -3) === 'jpg' || substr($question->option_a, -3) === 'peg')
+                    <td style="display: flex"><input name="pilihan[{{$question->id}}]" type="radio" value="A" style="height:25px; width:25px; vertical-align: middle"> <span class="mx-1"> A.</span>
+                        <img src="{{ asset('storage/post-images/' . $question->option_a) }}" alt="" width="400">
+                    </td>
+                     @else
+                     <td style="display: flex"><input name="pilihan[{{$question->id}}]" type="radio" value="A" style="height:25px; width:25px; vertical-align: middle"> <span class="mx-1"> A.</span>
+                        {!!$question->option_a!!}</td>
+                    <td></td>
+                    @endif
                 </tr>
                 <tr>
-                    <td><input name="pilihan[{{$question->id}}]" type="radio" value="B" style="height:25px; width:25px; vertical-align: middle"> B. {{$question->option_b}}</td>
+                    @if (substr($question->option_b, -3) === 'png' || substr($question->option_b, -3) === 'jpg' || substr($question->option_b, -3) === 'peg')
+                    <td class="my-2" style="display: flex"><input name="pilihan[{{$question->id}}]" type="radio" value="B" style="height:25px; width:25px; vertical-align: middle"> <span class="mx-1"> B.</span>
+                    <img src="{{ asset('storage/post-images/' . $question->option_b) }}" alt="" width="400">
+                    </td>
+                    @else 
+                    <td style="display: flex"><input name="pilihan[{{$question->id}}]" type="radio" value="B" style="height:25px; width:25px; vertical-align: middle"> <span class="mx-1"> B.</span>
+                    {!!$question->option_b!!}</td>
                     <td> </td>
+                    @endif
                 </tr>
                 <tr>
-                    <td><input name="pilihan[{{$question->id}}]" type="radio" value="C" style="height:25px; width:25px; vertical-align: middle"> C. {{$question->option_c}}</td>
+                    @if (substr($question->option_c, -3) === 'png' || substr($question->option_c, -3) === 'jpg' || substr($question->option_c, -3) === 'peg')
+                    <td class="mb-2" style="display: flex"><input name="pilihan[{{$question->id}}]" type="radio" value="C" style="height:25px; width:25px; vertical-align: middle"> <span class="mx-1"> C.</span>
+                    <img src="{{ asset('storage/post-images/' . $question->option_c) }}" alt="" width="400">
+                    </td>
+                    @else 
+                    <td style="display: flex"><input name="pilihan[{{$question->id}}]" type="radio" value="C" style="height:25px; width:25px; vertical-align: middle"> <span class="mx-1"> C.</span>
+                    {!!$question->option_c!!}</td>
                     <td> </td>
+                    @endif
                 </tr>
                 <tr>
-                    <td><input name="pilihan[{{$question->id}}]" type="radio" value="D" style="height:25px; width:25px; vertical-align: middle"> D. {{$question->option_d}}</td>
+                    @if (substr($question->option_d, -3) === 'png' || substr($question->option_d, -3) === 'jpg' || substr($question->option_d, -3) === 'peg')
+                    <td class="mb-2" style="display: flex"><input name="pilihan[{{$question->id}}]" type="radio" value="D" style="height:25px; width:25px; vertical-align: middle"> <span class="mx-1"> D.</span>
+                    <img src="{{ asset('storage/post-images/' . $question->option_d) }}" alt="" width="400">
+                    </td>
+                    @else 
+                    <td style="display: flex"><input name="pilihan[{{$question->id}}]" type="radio" value="D" style="height:25px; width:25px; vertical-align: middle"> <span class="mx-1"> D.</span>
+                    {!!$question->option_d!!}</td>
                     <td> </td>
+                    @endif
                 </tr>
                 <tr>
-                    <td><input name="pilihan[{{$question->id}}]" type="radio" value="E" style="height:25px; width:25px; vertical-align: middle"> E. {{$question->option_e}}</td>
+                    @if (substr($question->option_e, -3) === 'png' || substr($question->option_e, -3) === 'jpg' || substr($question->option_e, -3) === 'peg')
+                    <td class="mb-2" style="display: flex"><input name="pilihan[{{$question->id}}]" type="radio" value="E" style="height:25px; width:25px; vertical-align: middle"> <span class="mx-1"> E.</span>
+                    <img src="{{ asset('storage/post-images/' . $question->option_e) }}" alt="" width="400">
+                    </td>
+                    @else 
+                    <td style="display: flex"><input name="pilihan[{{$question->id}}]" type="radio" value="E" style="height:25px; width:25px; vertical-align: middle"> <span class="mx-1"> E.</span>
+                    {!!$question->option_e!!}</td>
                     <td> </td>
+                    @endif
                 </tr>
-								</tbody>
+				</tbody>
     </table>
     @endforeach
     
@@ -68,15 +214,15 @@
         @endphp
         @if($subtestId==1)
             @if ($subtest->id >= 7)
-            <button type="submit" class="btn btn-secondary mt-3">Selesai</button>
+            <button id="next" type="submit" class="btn btn-secondary my-3" onclick="nextSubtest()">Selesai</button>
             @else
-                <button type="submit" class="btn btn-secondary mt-3" onclick="nextSubtest()">Selanjutnya</button>
+                <button id="next" type="submit" class="btn btn-secondary my-3" onclick="nextSubtest()">Selanjutnya</button>
             @endif
         @else
             @if ($subtest->id >= 10)
-            <button type="submit" class="btn btn-secondary mt-3">Selesai</button>
+            <button id="next" type="submit" class="btn btn-secondary my-3" onclick="nextSubtest">Selesai</button>
             @else
-                <button type="submit" class="btn btn-secondary mt-3" onclick="nextSubtest()">Selanjutnya</button>
+                <button id="next" type="submit" class="btn btn-secondary my-3" onclick="nextSubtest()">Selanjutnya</button>
             @endif
         @endif
 
@@ -95,6 +241,12 @@
     var currentSubtest = getParameterByName('subtest');
     var nextSubtest = parseInt(currentSubtest) + 1;
     window.location.href = "/tryout/{{$tryout->id}}/test?subtest=" + nextSubtest;
+}
+function submitForm() {
+    var form = document.getElementById("form");
+    if (form) {
+        form.submit();
+    }
 }
 
 function getParameterByName(name, url) {

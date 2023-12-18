@@ -439,7 +439,7 @@ class QuestionController extends Controller
             if (!$subtest) {
                 // Handle kasus ketika subtes tidak ditemukan
                 // Misalnya, tampilkan pesan kesalahan atau redirect ke halaman lain
-                return redirect()->route('route_name_for_error')->with('error', 'Subtest not found for this tryout.');
+                return back()->with('error', 'Subtest not found for this tryout.');
             }
     // $subtest = $subtests[$subtestNumber - 1]; // -1 karena indeks array dimulai dari 0
     $title = "Soal Tryout";

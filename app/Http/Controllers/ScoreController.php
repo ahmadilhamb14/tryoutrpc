@@ -52,7 +52,8 @@ class ScoreController extends Controller
                     JOIN sub_tests ON sub_tests.id = scores.id_subtest
                     JOIN tryouts ON tryouts.id = sub_tests.id_tryout
                     where users.id = :userId
-                    GROUP BY sub_tests.id_tryout, DATE(scores.created_at)";
+                    GROUP BY sub_tests.id_tryout, DATE(scores.created_at)
+                    ORDER BY scores.created_at";
 
         $rawResults1 = DB::select($rawSql1, ['userId' => $userId]);
         // dd($rawResults);
