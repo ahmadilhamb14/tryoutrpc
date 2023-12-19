@@ -3,7 +3,7 @@
             <div class="container-fluid" >
               <a class="navbar-brand " href="#" style="font-size:30sp; font-weight: 500; margin-left: 12px; color: #FFC107"  >
               <img
-							src="assets/img/logo.jpeg"
+							src="{{ asset('assets/img/logo.jpeg') }}"
 							alt="Logo"
 							width="60"
 							class="rounded-circle px-2"

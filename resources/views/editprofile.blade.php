@@ -12,6 +12,7 @@
             </div>
             <div class="konten">
                 <form action="/profile/edit/{{ $profile->id }}" method="POST">
+                @method('put')
                 @csrf
                 <h1>{{ auth()->user()->fullname }}</h1>
                     <div class="row justify-content-center my-3">
@@ -31,7 +32,7 @@
                             </div>
                             <div class="mb-2">
                                 <p class="m-0">Password</p>
-                                <input class="rounded" type="text" value="{{ old('password', $profile->password) }}">
+                                <input class="rounded" type="password" name="password">
                             </div>
                         </div>
                     

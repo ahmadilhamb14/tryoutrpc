@@ -238,9 +238,25 @@
     // Simpan jawaban atau kemajuan pengguna ke backend (gunakan AJAX jika diperlukan)
 
     // Pindahkan ke subtes berikutnya
-    var currentSubtest = getParameterByName('subtest');
+    var currentSubtest = parseInt(getParameterByName('subtest'));
     var nextSubtest = parseInt(currentSubtest) + 1;
+    // if (currentSubtest < nextSubtest) {
     window.location.href = "/tryout/{{$tryout->id}}/test?subtest=" + nextSubtest;
+    // } else {
+    //     alert("Anda tidak dapat kembali ke subtest sebelumnya");
+    // }
+
+    // var targetUrl = "/tryout/{{$tryout->id}}/test?subtest=" + nextSubtest;
+
+    // if (nextSubtest > currentSubtest) {
+    //     window.location.href = targetUrl;
+    //     // Pengguna mencoba mengakses subtest yang berada di bawah currentSubtest
+        
+    // } else {
+    //     // Arahkan ke subtest berikutnya
+    //     alert("Anda tidak dapat mengakses subtest sebelumnya.");
+    // }
+
 }
 function submitForm() {
     var form = document.getElementById("form");
