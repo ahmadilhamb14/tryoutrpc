@@ -72,20 +72,29 @@ class TryoutController extends Controller
     public function show(Tryout $tryout, Request $request)
     {
         $subtest = $request->input('subtest');
-        
+        $ses_subtest=0;
+        session(['selected_subtest', $subtest]);       
+        session()->put('selected_subtest', $subtest);
 
-        if ($subtest) {
+        if (session()->get("selected_subtest")){
+            $ses_subtest = session()->get("selected_subtest");
+        }
+
+
+        // dd( $ses_subtest);
+
+        if ($ses_subtest) {
             // dd('aa');
             return view('kelola', [
                 "title" => "Kelola Tryout",
                 "tryouts" => Tryout::find($tryout),
                 "subtests" => SubTest::where('id_tryout', $tryout->id)->get(),
-                "questions" => Question::whereHas('subtest', function ($query) use ($tryout, $subtest) {
+                "questions" => Question::whereHas('subtest', function ($query) use ($tryout, $ses_subtest) {
                     $query->where('id_tryout', $tryout->id)
-                    ->where('id_subtest', $subtest);
+                    ->where('id_subtest', $ses_subtest);
                 })
                 ->orderBy('id')
-                ->get()
+                ->paginate(10)
                 // "questions" => Question::all()
             ]);
         } else {
@@ -98,7 +107,7 @@ class TryoutController extends Controller
                     $query->where('id_tryout', $tryout->id);
                 })
                 ->orderBy('id')
-                ->get()
+                ->paginate(10)
                 // "questions" => Question::all()
             ]);
         }
