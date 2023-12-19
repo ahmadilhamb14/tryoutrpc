@@ -37,12 +37,6 @@
                         <div class="col-5 mb-2">
                         : {{ auth()->user()->username }}
                         </div>
-                        <div class="col-4 mb-2">
-                        Password
-                        </div>
-                        <div class="col-5 mb-2">
-                        : *********
-                        </div>
                     </div>
                   <a href="/profile/edit/{{ auth()->user()->id }}" type="button" class="btn btn-primary mx-5 my-3 px-3">Ubah Profile</a>
             </div>

@@ -20,19 +20,39 @@
                         <div class="px-5">
                             <div class="mb-2">
                                 <p class="m-0">Nama Lengkap</p>
-                                <input class="rounded" type="text" name="fullname" value="{{ old('fullname', $profile->fullname) }}">
+                                <input class="@error('fullname') is-invalid @enderror rounded" type="text" name="fullname" value="{{ old('fullname', $profile->fullname) }}">
+                                @error('fullname')
+                                <div class="mt-1 invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                             <div class="mb-2">
                                 <p class="m-0">Asal Sekolah</p>
-                                <input class="rounded" type="text" name="school" value="{{ old('school', $profile->school) }}">
+                                <input class="@error('school') is-invalid @enderror rounded" type="text" name="school" value="{{ old('school', $profile->school) }}">
+                                @error('school')
+                                <div class="mt-1 invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                             <div class="mb-2">
                                 <p class="m-0">Username</p>
-                                <input class="rounded" type="text" name="username" value="{{ old('username', $profile->username) }}">
+                                <input class="@error('username') is-invalid @enderror rounded" type="text" name="username" value="{{ old('username', $profile->username) }}">
+                                @error('username')
+                                <div class="mt-1 invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                             <div class="mb-2">
                                 <p class="m-0">Password</p>
-                                <input class="rounded" type="password" name="password">
+                                <input class="@error('password') is-invalid @enderror rounded" type="password" name="password">
+                                @error('password')
+                                <div class="mt-1 invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                     

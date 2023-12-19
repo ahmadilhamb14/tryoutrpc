@@ -9,11 +9,31 @@
             <header class="mb-2">Sign In</header>
             <form action="/signin" method="post">
                 @csrf
-                <input class="mb-2" type="text" name="fullname" placeholder="Full Name" required />
-                <input class="mb-2" type="text" name="school" placeholder="School" required />
-                <input class="mb-2" type="text" name="username" placeholder="Username" required />
-                <input type="password" name="password" placeholder="Password" required />
-                <button type="submit" class="btn btn-light mb-2 p-2 rounded b-0">Sign In</button>
+                <input class="@error('fullname') is-invalid @enderror" type="text" name="fullname" placeholder="Full Name" required />
+                @error('fullname')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+                <input class="mt-4 @error('school') is-invalid @enderror" type="text" name="school" placeholder="School" required />
+                @error('school')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+                <input class="mt-4 @error('username') is-invalid @enderror" type="text" name="username" placeholder="Username" required />
+                @error('username')
+                <div class="m-0 invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+                <input class="mt-4 @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password" required />
+                @error('password')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+                <button type="submit" class="btn btn-light mt-4 mb-4 p-2 rounded b-0">Sign In</button>
                 @if(session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -37,8 +57,8 @@
 
             <form method="post" action="{{ route('login') }}">
                 @csrf
-                <input class="mb-3" type="text" name="username" placeholder="Username" required />
-                <input type="password" name="password" placeholder="Password" required />
+                <input type="text"  name="username" placeholder="Username" required />
+                <input class="my-4" type="password" name="password" placeholder="Password" required />
                 <button type="submit" class="btn btn-warning p-2 rounded b-0">Login</button>
                 <!-- <input class="bg-warning" type="submit" name="login" value="Login" /> -->
             </form>

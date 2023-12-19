@@ -41,6 +41,7 @@ Route::get('/', function () {
 
 // Route::resource('/tryout/kelola', TryoutController::class)->middleware('admin');
 Route::resource('/tryout', TryoutController::class)->middleware('auth');
+// Route::get('/tryout/{tryoutId}/filter-questions', [TryoutController::class, 'show'])->name('filterQuestions');
 
 // Route::get('/tryout/kelola/tambahsoal', function () {
 //     return view('tambahsoal', [

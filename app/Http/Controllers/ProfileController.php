@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -36,24 +37,25 @@ class ProfileController extends Controller
         
 
         if ($request->password) {
-            $rules = [  
+            $rules = $request->validate([  
                 'username' => 'min:3|max:255|unique:users,username,' . $user->id,
                 'fullname' => 'max:255',
                 'school' => 'max:255',
                 'password' => 'required|min:5|max:255'                                                                                                                                                                                                                                                                                                                   
-            ];
+            ]);
+            $rules['password'] = Hash::make($rules['password']);
         } else {
-            $rules = [  
+            $rules = $request->validate([  
                 'username' => 'min:3|max:255|unique:users,username,' . $user->id,
                 'fullname' => 'max:255',
                 'school' => 'max:255'                                                                                                                                                                                                                                                                                                                     
-            ];
+            ]);
         }
-
-        $validatedData = $request->validate($rules);
+        // $validatedData = $request->validate($rules);
+        
         // dd($validatedData);
 
-        User::where('id', $user->id)->update($validatedData);
+        User::where('id', $user->id)->update($rules);
         return redirect('/profile')->with('success', 'Data profile berhasil diupdate!');
     }
 

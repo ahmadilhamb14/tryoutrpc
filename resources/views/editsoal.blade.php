@@ -39,9 +39,9 @@
               <select class="form-select" name="id_subtest" id="id_subtest">
                 @foreach($subtests as $subtest)
                     @if(old('id_subtest',  $subtest->id) ==  $questions->subtest->id)
-                        <option value="{{ $subtest->id }}" selected>{{ $questions->subtest->id }}</option>
+                        <option value="{{ $subtest->id }}" selected>{{ $questions->subtest->subtes }}</option>
                     @else
-                        <option value="{{ $subtest->id }}">{{ $subtest->id }}</option>
+                        <option value="{{ $subtest->id }}">{{ $subtest->subtes }}</option>
                     @endif
                 @endforeach
               </select>

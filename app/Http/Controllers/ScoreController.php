@@ -27,7 +27,8 @@ class ScoreController extends Controller
                     JOIN users ON scores.id_user = users.id
                     JOIN sub_tests ON sub_tests.id = scores.id_subtest
                     JOIN tryouts ON tryouts.id = sub_tests.id_tryout
-                    GROUP BY scores.id_user, sub_tests.id_tryout, DATE(scores.created_at)";
+                    GROUP BY scores.id_user, sub_tests.id_tryout, DATE(scores.created_at)
+                    ORDER BY scores.created_at";
 
         $rawResults = DB::select($rawSql);
         // dd($rawResults);
@@ -134,6 +135,7 @@ class ScoreController extends Controller
             $query->where('tryout', $tryout); // Replace 'tryout_column' with the actual column name
         })
         ->whereDate('created_at', $tanggal)
+        ->orderBy('created_at')
         ->get();
 
         $scores = Score::with(['user', 'subtest.tryout'])
@@ -142,6 +144,7 @@ class ScoreController extends Controller
             $query->where('tryout', $tryout); // Replace 'tryout_column' with the actual column name
         })
         ->whereDate('created_at', $tanggal)
+        ->orderBy('created_at')
         ->get();
 
         $user = User::where('id', $userId)->first();

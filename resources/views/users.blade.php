@@ -66,25 +66,45 @@
           <label for="nama">Nama Lengkap</label>
         </div>
         <div class="col-6 mb-2">
-          <input type="text" name="fullname" id="" class="rounded">
+          <input type="text" name="fullname" id="" class="@error('fullname') is-invalid @enderror rounded">
+          @error('fullname')
+          <div class="mt-1 invalid-feedback">
+          {{ $message }}
+          </div>
+          @enderror
         </div>
         <div class="col-4 mb-2">
           <label for="sekolah">Asal Sekolah</label>
         </div>
         <div class="col-6 mb-2">
-          <input type="text" name="school" id="" class="rounded">
+          <input type="text" name="school" id="" class="@error('school') is-invalid @enderror rounded">
+          @error('school')
+          <div class="mt-1 invalid-feedback">
+          {{ $message }}
+          </div>
+          @enderror
         </div>
         <div class="col-4 mb-2">
           <label for="username">Username</label>
         </div>
         <div class="col-6 mb-2">
-          <input type="text" name="username" id="" class="rounded">
+          <input type="text" name="username" id="" class="@error('username') is-invalid @enderror rounded">
+          @error('username')
+          <div class="mt-1 invalid-feedback">
+          {{ $message }}
+          </div>
+          @enderror
         </div>
         <div class="col-4 mb-2">
           <label for="pass">Password</label>
         </div>
         <div class="col-6 mb-2">
-          <input type="password" name="password" id="" class="rounded">
+          <input type="password" name="password" id="" class="@error('password') is-invalid @enderror rounded">
+          @error('password')
+          <div class="mt-1 invalid-feedback">
+          {{ $message }}
+          </div>
+          @enderror
         </div>
         <center>
         <button type="submit" class="btn btn-primary text-align-center mt-4" href="">Simpan</button>

@@ -13,9 +13,39 @@
     </div>
     @endif
     {{-- <a href="/tryout/create" class="btn btn-primary mb-3 px-2"  > --}}
-    <a href="/tryout/{{ $tryout->id }}/soaltryout/create" class="btn btn-primary mb-3 px-2"  >
-        Tambah Soal
-    </a>
+    <div class="d-flex justify-content-between">
+        <div>
+            <a href="/tryout/{{ $tryout->id }}/soaltryout/create" class="btn btn-primary mb-3 px-2"  >
+                Tambah Soal
+            </a>
+        </div>
+        <div>
+            <form action="/tryout/{{ $tryout->id }}" method="GET">
+                @csrf
+                <div class="d-flex">
+                    <div class="my-1 mx-2">
+                        <label for="subtest">Filter by Subtest:</label>
+                    </div>
+                    <div class="mx-2">
+                        <select name="subtest" id="subtest" class="form-select">
+                            <option value="">All Subtests</option>
+                            @foreach ($subtests as $subtest)
+                                <option value="{{ $subtest->id }}">{{ $subtest->subtes }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Apply Filter</button>
+                    </div>
+                    
+                    
+                </div>
+                
+            </form>
+        </div>
+        
+    </div>
+    
     <div class="hack1">
     <div class="hack2">
     <table class="table table-striped table-bordered" id="dtHorizontalExample">

@@ -69,23 +69,60 @@ class TryoutController extends Controller
      * @param  \App\Models\Tryout  $tryout
      * @return \Illuminate\Http\Response
      */
-    public function show(Tryout $tryout)
+    public function show(Tryout $tryout, Request $request)
     {
-      
-        return view('kelola', [
-            "title" => "Kelola Tryout",
-            "tryouts" => Tryout::find($tryout),
-            // "tryouts" => Tryout::where('id', $tryout)->first(),
-            // "subtests" => SubTest::where('id_tryout', $tryout)->get(),
-            "subtests" => SubTest::where('id_tryout', $tryout->id)->get(),
-            // "questions" => Question::where('subtest.id_tryout', $tryout->id)->get(),
-            "questions" => Question::whereHas('subtest', function ($query) use ($tryout) {
-                $query->where('id_tryout', $tryout->id);
-            })
-            ->orderBy('id')
-            ->get()
-            // "questions" => Question::all()
-        ]);
+        $subtest = $request->input('subtest');
+        
+
+        if ($subtest) {
+            // dd('aa');
+            return view('kelola', [
+                "title" => "Kelola Tryout",
+                "tryouts" => Tryout::find($tryout),
+                "subtests" => SubTest::where('id_tryout', $tryout->id)->get(),
+                "questions" => Question::whereHas('subtest', function ($query) use ($tryout, $subtest) {
+                    $query->where('id_tryout', $tryout->id)
+                    ->where('id_subtest', $subtest);
+                })
+                ->orderBy('id')
+                ->get()
+                // "questions" => Question::all()
+            ]);
+        } else {
+            // dd('ab');
+            return view('kelola', [
+                "title" => "Kelola Tryout",
+                "tryouts" => Tryout::find($tryout),
+                "subtests" => SubTest::where('id_tryout', $tryout->id)->get(),
+                "questions" => Question::whereHas('subtest', function ($query) use ($tryout) {
+                    $query->where('id_tryout', $tryout->id);
+                })
+                ->orderBy('id')
+                ->get()
+                // "questions" => Question::all()
+            ]);
+        }
+
+        // $tryoutModel = Tryout::find($tryout);
+        // $subtests = SubTest::where('id_tryout', $tryoutModel->id)->get();
+        
+        // $selectedSubtest = request('subtest');
+
+        // $questions = $selectedSubtest
+        //     ? Question::where('tryout_id', $tryoutModel->id)
+        //         ->whereHas('subtest', function ($query) use ($selectedSubtest) {
+        //             $query->where('id', $selectedSubtest);
+        //         })
+        //         ->orderBy('id')
+        //         ->get()
+        //     : Question::where('tryout_id', $tryoutModel->id)->orderBy('id')->get();
+
+        // return view('kelola', [
+        //     "title" => "Kelola Tryout",
+        //     "tryouts" => $tryoutModel,
+        //     "subtests" => $subtests,
+        //     "questions" => $questions
+        // ]);
     }
 
     /**
