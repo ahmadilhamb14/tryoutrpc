@@ -30,15 +30,17 @@
                         <select name="subtest" id="subtest" class="form-select">
                             <option value="">All Subtests</option>
                             @foreach ($subtests as $subtest)
+                                @if ($subtest->id == session()->get('selected_subtest')) 
+                                <option value="{{ $subtest->id }}" selected>{{ $subtest->subtes }}</option>
+                                @else
                                 <option value="{{ $subtest->id }}">{{ $subtest->subtes }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
                     <div>
                         <button type="submit" class="btn btn-primary">Apply Filter</button>
                     </div>
-                    
-                    
                 </div>
                 
             </form>
@@ -64,7 +66,7 @@
                 <th scope="col">Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody> 
             @foreach ($questions as $question)
             <tr class="text-center">
                 <td scope="row">{{ $loop->iteration }}</td>
@@ -147,6 +149,7 @@
             @endforeach
         </tbody>
     </table> 
+    <div class="float-end">{{ $questions->appends(Question::get('selected_subtest'))->links() }}</div>
     </div>
 </div>
 @endcan
