@@ -5,10 +5,16 @@
 @section('container')
 <div class="greeting">
      @can('admin')
-     <h1>Selamat datang Admin</h1>
+     <h1>Hai Admin,
+          <br><br>
+          Selamat Datang di Tryout RPC (Ranu Prima Collage)
+     </h1>
      @endcan
      @can('non-admin')
-     <h1>Selamat datang {{ auth()->user()->fullname }}</h1>
+     <h1>Hai {{ auth()->user()->fullname }},
+     <br><br>
+     Selamat Datang di Tryout RPC (Ranu Prima Collage)
+     </h1>
      @endcan
 
 
