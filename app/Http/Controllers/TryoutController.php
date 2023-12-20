@@ -88,13 +88,14 @@ class TryoutController extends Controller
             return view('kelola', [
                 "title" => "Kelola Tryout",
                 "tryouts" => Tryout::find($tryout),
+                "session" => $ses_subtest,
                 "subtests" => SubTest::where('id_tryout', $tryout->id)->get(),
                 "questions" => Question::whereHas('subtest', function ($query) use ($tryout, $ses_subtest) {
                     $query->where('id_tryout', $tryout->id)
                     ->where('id_subtest', $ses_subtest);
                 })
                 ->orderBy('id')
-                ->paginate(10)
+                ->get()
                 // "questions" => Question::all()
             ]);
         } else {
@@ -102,6 +103,7 @@ class TryoutController extends Controller
             return view('kelola', [
                 "title" => "Kelola Tryout",
                 "tryouts" => Tryout::find($tryout),
+                "session" => $ses_subtest,
                 "subtests" => SubTest::where('id_tryout', $tryout->id)->get(),
                 "questions" => Question::whereHas('subtest', function ($query) use ($tryout) {
                     $query->where('id_tryout', $tryout->id);

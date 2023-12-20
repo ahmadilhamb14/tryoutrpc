@@ -149,7 +149,10 @@
             @endforeach
         </tbody>
     </table> 
-    <div class="float-end">{{ $questions->appends(Question::get('selected_subtest'))->links() }}</div>
+    @if ($session)
+    @else
+    <div class="float-end">{{ $questions->links() }}</div>
+    @endif
     </div>
 </div>
 @endcan
