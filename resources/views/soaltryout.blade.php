@@ -27,7 +27,7 @@
 		></script>
 
         <?php 
-        $waktu = date('s', strtotime($subtest['timer']));
+        $waktu = date('i', strtotime($subtest['timer']));
         $subtestId = $tryout->id;
         ?>
 		<!-- Script Timer -->

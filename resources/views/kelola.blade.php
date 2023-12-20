@@ -175,7 +175,7 @@
             <tr class="text-center">
                 <td scope="row">{{ $loop->iteration }}</td>
                 <td>{{$subtest['subtes']}}</td>
-                <td>{{ date('s', strtotime($subtest['timer'])) }} menit</td>
+                <td>{{ date('i', strtotime($subtest['timer'])) }} menit</td>
                 <td>{{$subtest->question->count()}}</td>
             </tr>
             @endforeach

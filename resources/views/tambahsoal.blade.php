@@ -19,7 +19,7 @@
         <div>
             <label for="question">Soal</label>
             <trix-editor input="textarea"></trix-editor>
-            <input id="textarea" type="hidden" name="question">
+            <input id="textarea" type="hidden" name="question" required>
         </div>
 
         <div class="my-5">
@@ -101,31 +101,31 @@
             <label for="option_key">Jawaban</label>
             <br>
             <div class="form-check-inline">
-                <input class="form-check-input" type="radio" name="option_key" id="option_key1" value="A">
+                <input class="form-check-input" type="radio" name="option_key" id="option_key1" value="A" required>
                 <label class="form-check-label" for="option_key1">
                     A
                 </label>
             </div>
             <div class="form-check-inline">
-                <input class="form-check-input" type="radio" name="option_key" id="option_key1" value="B">
+                <input class="form-check-input" type="radio" name="option_key" id="option_key1" value="B" required>
                 <label class="form-check-label" for="option_key1">
                     B
                 </label>
             </div>
                 <div class="form-check-inline">
-                <input class="form-check-input" type="radio" name="option_key" id="option_key1" value="C">
+                <input class="form-check-input" type="radio" name="option_key" id="option_key1" value="C" required>
                 <label class="form-check-label" for="option_key1">
                     C
                 </label>
             </div>
                 <div class="form-check-inline">
-                <input class="form-check-input" type="radio" name="option_key" id="option_key1" value="D">
+                <input class="form-check-input" type="radio" name="option_key" id="option_key1" value="D" required>
                 <label class="form-check-label" for="option_key1">
                     D
                 </label>
             </div>
             <div class="form-check-inline">
-                <input class="form-check-input" type="radio" name="option_key" id="option_key1" value="E">
+                <input class="form-check-input" type="radio" name="option_key" id="option_key1" value="E" required>
                 <label class="form-check-label" for="option_key1">
                     E
                 </label>
