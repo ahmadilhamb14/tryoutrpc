@@ -3,7 +3,15 @@
 
 @section('container')
 <div class="tryout">
-    <h4 class="mb-2">Test Tryout</h4>
+    {{-- <h4 class="mb-2">Test Tryout</h4> --}}
+    <div class="row justify-content-between mb-3">
+      <div class="col-4">
+        <h4>Test Tryout</h4> 
+      </div>
+      <div class="col-4 d-flex justify-content-end">
+        <button class="btn btn-secondary text-light">Kembali</button>
+      </div>
+    </div>
         <div class="row">
           @foreach ($tryouts as $tryout)
           <div class="card p-0" style="width: 14rem">

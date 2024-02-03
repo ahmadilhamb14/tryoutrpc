@@ -3,7 +3,14 @@
 @section('container')
 <div class="users">
 @can('admin')
-<h4 class="mb-2">Hasil Tryout</h4>
+<div class="row justify-content-between mb-3">
+  <div class="col-4">
+    <h4>Hasil Tryout</h4> 
+  </div>
+  <div class="col-4 d-flex justify-content-end">
+    <button class="btn btn-secondary text-light">Kembali</button>
+  </div>
+</div>
 <table class="table">
   <thead>
     <tr class="text-center">
