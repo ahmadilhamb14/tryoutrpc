@@ -8,7 +8,7 @@
                     <h5 class="">Edit Soal Tryout {{ $tryout['tryout'] }}</h5>
                 </div>
                 <div class="col-4 d-flex justify-content-end">
-                    <button class="btn btn-secondary text-light">Kembali</button>
+                    <button onclick="goBack()" class="btn btn-secondary text-light">Kembali</button>
                 </div>
             </div>
         @endforeach

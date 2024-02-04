@@ -8,14 +8,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <div class="row justify-content-between mb-3">
+        {{-- <div class="row justify-content-between mb-3">
             <div class="col-4">
                 <h4>User</h4>
             </div>
             <div class="col-4 d-flex justify-content-end">
-                <button class="btn btn-secondary text-light">Kembali</button>
+                <a href="{{ url('/') }}" class="btn btn-secondary">Kembali</a>
             </div>
-        </div>
+        </div> --}}
+        <h4 class="mb-3">User</h4>
         <table class="table">
             <thead>
                 <tr class="text-center">
