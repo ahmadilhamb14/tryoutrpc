@@ -37,10 +37,18 @@
                                 <td>{{ $item['fullname'] }}</td>
                                 <td>{{ $item['tanggal'] }}</td>
                                 <td>{{ $item['tryout'] }}</td>
-                                <td>{{ $item['total_score'] }}<button class="btn btn-success mx-2" href="/results/detail"><span
-                                            data-feather="eye"></span></button>
-                                    {{-- <td>{{$item["total_score"]}}<a class="badge bg-success" href="" data-bs-toggle="modal" data-bs-target="#detail-hasil"><span
-              data-feather="eye"></span></a> --}}
+                                <td>
+                                    <div class="row justify-content-between">
+                                        <div class="col">
+                                            {{ $item['total_score'] }}
+                                        </div>
+                                        <div class="col">
+                                            <button class="btn btn-success mx-2" href="/results/detail">
+                                                <span data-feather="eye"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </form>
                     @endforeach
