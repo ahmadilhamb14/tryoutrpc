@@ -3,15 +3,15 @@
 @section('container')
     <div class="users">
         @can('admin')
-            <h4 class="mb-3">Hasil Tryout</h4>
-            {{-- <div class="row justify-content-between mb-3">
+            {{-- <h4 class="mb-3">Hasil Tryout</h4> --}}
+            <div class="row justify-content-between mb-3">
                 <div class="col-4">
                     <h4>Hasil Tryout</h4>
                 </div>
                 <div class="col-4 d-flex justify-content-end">
-                    <a href="{{ url('/') }}" class="btn btn-secondary">Kembali</a>
+                    <a href="/results/export/excel" class="btn btn-primary">Download</a>
                 </div>
-            </div> --}}
+            </div>
             <table class="table">
                 <thead>
                     <tr class="text-center">

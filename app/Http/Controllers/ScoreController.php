@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreScoreRequest;
 use App\Http\Requests\UpdateScoreRequest;
 use Illuminate\Http\Request;
+use App\Exports\ExportScore;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ScoreController extends Controller
 {
@@ -196,5 +198,9 @@ class ScoreController extends Controller
     public function destroy(Score $score)
     {
         //
+    }
+
+    public function export_excel(){
+        return Excel::download(new ExportScore, "score.xlsx");
     }
 }

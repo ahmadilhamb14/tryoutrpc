@@ -94,3 +94,7 @@ Route::put('/profile/edit/{user:id}', [ProfileController::class, 'update'])->mid
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
 
+// Export
+Route::get('/results/export/excel', [ScoreController::class, 'export_excel'])->middleware('auth');
+
+
