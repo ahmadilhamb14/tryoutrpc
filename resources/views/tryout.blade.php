@@ -24,7 +24,7 @@
                         <a href="tryout/{{ $tryout->id }}" type="button" class="btn btn-warning p-1">KELOLA</a>
                     @endcan
                     @can('non-admin')
-                        <a href="tryout/{{ $tryout->id }}" type="button" class="btn btn-warning p-1">Review</a>
+                        <a href="tryout/{{ $tryout->id }}" type="button" class="btn btn-warning p-1">LIHAT</a>
                     @endcan
                 </div>
             @endforeach

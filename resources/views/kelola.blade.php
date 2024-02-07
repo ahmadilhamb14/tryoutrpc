@@ -183,7 +183,14 @@
         @endcan
         @can('non-admin')
             @foreach ($tryouts as $tryout)
-                <h4 class="">{{ $tryout['tryout'] }}</h4>
+                <div class="row justify-content-between mb-3">
+                    <div class="col-4">
+                        <h4 class="">{{ $tryout['tryout'] }}</h4>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end">
+                        <button onclick="goBack()" class="btn btn-secondary text-light">Kembali</button>
+                    </div>
+                </div>
             @endforeach
             <h5 class = "mb-3" style="text-align: center;">Rincian Subtes</h5>
             <table class="table">
