@@ -32,7 +32,7 @@
                         <div class="mb-2">
                             <p class="m-0">Asal Sekolah</p>
                             <input class="@error('school') is-invalid @enderror rounded" type="text" name="school"
-                                value="{{ old('school', $profile->school) }}">
+                                value="{{ old('school', $profile->sekolah->sekolah) }}">
                             @error('school')
                                 <div class="mt-1 invalid-feedback">
                                     {{ $message }}

@@ -34,7 +34,7 @@
                         <tr class="text-center">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user['fullname'] }}</td>
-                            <td>{{ $user['school'] }}</td>
+                            <td>{{ $user->sekolah['sekolah'] }}</td>
                             <td>{{ $user['username'] }}</td>
                             <td>
                                 <a class="badge bg-warning" href="/users/{{ $user->id }}/edit"> <span
