@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Kabupaten;
+use App\Models\Sekolah;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +13,9 @@ class LoginController extends Controller
 {
     public function index() {
         return view('login', [
-            'title' => 'login'
+            'title' => 'login',
+            "kabupatens" => Kabupaten::all(),
+            "sekolahs" => Sekolah::all()
         ]);
     }
 

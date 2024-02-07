@@ -20,10 +20,13 @@ return new class extends Migration
             // $table->timestamp('email_verified_at')->nullable();
             $table->string('password'); //password should be in hash
             $table->string('fullname');
-            $table->string('school');
+            $table->unsignedBigInteger('id_school');
             $table->boolean('isAdmin')->default(false); 
             // $table->rememberToken();
             $table->timestamps(); # a must for tinker
+
+            $table->foreign('id_school')->references('id')->on('sekolahs');
+
         });
     }
 

@@ -22,18 +22,18 @@ class UserSeeder extends Seeder
             'username' => 'Syifa',
             'password' => Hash::make('syifa'),
             'fullname' => 'Syifa Ur Rahmi',
-            'school' => Str::random(10),
+            'id_school' => 1,
             'isAdmin' => true,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
-        DB::table('users')->insert([
-            'username' => 'roko',
-            'password' => Hash::make('user'),
-            'fullname' => Str::random(10),
-            'school' => Str::random(10),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        // DB::table('users')->insert([
+        //     'username' => 'roko',
+        //     'password' => Hash::make('user'),
+        //     'fullname' => Str::random(10),
+        //     'school' => Str::random(10),
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now(),
+        // ]);
     }
 }

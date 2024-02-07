@@ -96,7 +96,8 @@ form a {
 form a:hover {
     text-decoration: underline;
 }
-form input[type="submit"] {
+form input[type="submit"],
+form select[type="submit"] {
     margin-top: 15px;
     padding: none;
     font-size: 18px;

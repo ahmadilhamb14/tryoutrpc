@@ -50,6 +50,11 @@ class User extends Authenticatable
 {
     return $this->hasMany(Score::class);
 }
+
+public function sekolah() {
+    return $this->belongsTo(Sekolah::class, 'id_sekolah');
+}
+
 public function getIsAdminAttribute()
 {
     return $this->attributes['isAdmin'] == 1;

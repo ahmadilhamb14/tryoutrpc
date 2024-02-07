@@ -40,11 +40,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $validatedData = $request->validate([
             'username' => 'required|min:3|max:255|unique:users',    
             'password' => 'required|min:5|max:255',   
             'fullname' => 'required|max:255',
-            'school' => 'required|max:255'
+            'id_school' => 'required'
         ]);
 
 
@@ -93,7 +94,7 @@ class UserController extends Controller
         $rules = [
             'username' => 'min:3|max:255|unique:users',    
             'fullname' => 'max:255',
-            'school' => 'max:255'
+            'id_school' => 'required'
         ];
 
         $validatedData = $request->validate($rules);
