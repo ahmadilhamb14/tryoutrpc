@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Kabupaten;
+use App\Models\Sekolah;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -22,6 +24,8 @@ class ProfileController extends Controller
             return view('editprofile', [
                 "title" => "Edit Profile",
                 'profile' => User::where('id',$id)->first(),
+                "kabupatens" => Kabupaten::all(),
+                "sekolahs" => Sekolah::all()
             ]);
 
         } else {
@@ -40,7 +44,7 @@ class ProfileController extends Controller
             $rules = $request->validate([  
                 'username' => 'min:3|max:255|unique:users,username,' . $user->id,
                 'fullname' => 'max:255',
-                'school' => 'max:255',
+                'id_school' => 'max:255',
                 'password' => 'required|min:5|max:255'                                                                                                                                                                                                                                                                                                                   
             ]);
             $rules['password'] = Hash::make($rules['password']);
@@ -48,7 +52,7 @@ class ProfileController extends Controller
             $rules = $request->validate([  
                 'username' => 'min:3|max:255|unique:users,username,' . $user->id,
                 'fullname' => 'max:255',
-                'school' => 'max:255'                                                                                                                                                                                                                                                                                                                     
+                'id_school' => 'max:255'                                                                                                                                                                                                                                                                                                                     
             ]);
         }
         // $validatedData = $request->validate($rules);
