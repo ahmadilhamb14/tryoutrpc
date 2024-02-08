@@ -19,7 +19,8 @@
                     </div>
                     <div class="col-6">
                         : <input type="text" name="fullname" id="nama" class="rounded ms-1 p-1"
-                            value="{{ old('fullname', $user->fullname) }}">
+                            value="{{ old('fullname', $user->fullname) }}"
+                            style="border-radius: 6px; width:228px; height:33px; border: 1px solid">
                     </div>
                 </div>
                 <div class="row">
@@ -27,7 +28,8 @@
                         <label for="kabupaten">Kabupaten</label>
                     </div>
                     <div class="col-6">
-                        : <select class="rounded ms-1 p-1" id="kabupaten" name="id_kabupaten">
+                        : <select class="rounded ms-1 p-1" id="kabupaten" name="id_kabupaten"
+                            style="border-radius: 6px; width:228px; height:33px; border: 1px solid">
                             @foreach ($kabupatens as $kabupaten)
                                 @if ($kabupaten->id == $user->sekolah->kabupaten->id)
                                     <option value="{{ $kabupaten->id }}" selected>{{ $user->sekolah->kabupaten->kabupaten }}
@@ -44,7 +46,8 @@
                         <label for="sekolah">Asal Sekolah</label>
                     </div>
                     <div class="col-6">
-                        : <select class="rounded ms-1 p-1" id="id_school" name="id_school">
+                        : <select class="rounded ms-1 p-1" id="id_school" name="id_school"
+                            style="border-radius: 6px; width:228px; height:33px; border: 1px solid">
                             {{-- Initial Sekolahs will be hidden --}}
                             @foreach ($sekolahs as $sekolah)
                                 @if (old('id_school', $sekolah->id) == $user->id_school)
@@ -64,7 +67,8 @@
                     </div>
                     <div class="col-6">
                         : <input type="text" name="username" id="username-input" class="rounded ms-1 p-1"
-                            value="{{ old('username', $user->username) }}">
+                            value="{{ old('username', $user->username) }}"
+                            style="border-radius: 6px; width:228px; height:33px; border: 1px solid">
                     </div>
                 </div>
 
