@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Kabupaten;
+use App\Models\Sekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +20,9 @@ class UserController extends Controller
     {        
         return view('users', [
             'users' => User::where('isAdmin', 0)->paginate(10),
-            "title" => "Users"
+            "title" => "Users",
+            "kabupatens" => Kabupaten::all(),
+            "sekolahs" => Sekolah::all()
         ]);
     }
 
@@ -40,7 +44,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         $validatedData = $request->validate([
             'username' => 'required|min:3|max:255|unique:users',    
             'password' => 'required|min:5|max:255',   
@@ -78,7 +81,9 @@ class UserController extends Controller
     {
         return view('edituser', [
             "title" => "Edit User",
-            'user' => $user
+            'user' => $user,
+            "kabupatens" => Kabupaten::all(),
+            "sekolahs" => Sekolah::all()
         ]);
     }
 

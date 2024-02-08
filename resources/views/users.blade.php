@@ -77,9 +77,27 @@
                             </div>
                             <div class="col-6 mb-2">
                                 <input type="text" name="fullname" id=""
-                                    class="@error('fullname') is-invalid @enderror rounded">
+                                    style="border-radius: 8px; width:228px; border: 1px solid"
+                                    class="@error('fullname') is-invalid @enderror rounded px-2">
                                 @error('fullname')
                                     <div class="mt-1 invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-4 mb-2">
+                                Kabupaten
+                            </div>
+                            <div class="col-6 mb-2">
+                                <select class="p-1 @error('kabupaten') is-invalid @enderror" id="kabupaten" name="kabupaten"
+                                    style="border-radius: 6px; width:228px; height:33px; border: 1px solid">
+                                    <option value="">Pilih Kabupaten</option>
+                                    @foreach ($kabupatens as $kabupaten)
+                                        <option value="{{ $kabupaten->id }}">{{ $kabupaten->kabupaten }}</option>
+                                    @endforeach
+                                </select>
+                                @error('kabupaten')
+                                    <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
@@ -88,10 +106,17 @@
                                 <label for="sekolah">Asal Sekolah</label>
                             </div>
                             <div class="col-6 mb-2">
-                                <input type="text" name="school" id=""
-                                    class="@error('school') is-invalid @enderror rounded">
-                                @error('school')
-                                    <div class="mt-1 invalid-feedback">
+                                <select class="p-1 @error('school') is-invalid @enderror" id="id_school" name="id_school"
+                                    style="border-radius: 6px; width:228px; height:33px; border: 1px solid">
+                                    <option value="">Pilih Sekolah</option>
+                                    {{-- Initial Sekolahs will be hidden --}}
+                                    @foreach ($sekolahs as $sekolah)
+                                        <option value="{{ $sekolah->id }}" data-kabupaten="{{ $sekolah->id_kabupaten }}"
+                                            style="display: none;">{{ $sekolah->sekolah }}</option>
+                                    @endforeach
+                                </select>
+                                @error('id_school')
+                                    <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
@@ -101,7 +126,8 @@
                             </div>
                             <div class="col-6 mb-2">
                                 <input type="text" name="username" id=""
-                                    class="@error('username') is-invalid @enderror rounded">
+                                    style="border-radius: 8px; width:228px; border: 1px solid"
+                                    class="@error('username') is-invalid @enderror rounded px-2">
                                 @error('username')
                                     <div class="mt-1 invalid-feedback">
                                         {{ $message }}
@@ -113,7 +139,8 @@
                             </div>
                             <div class="col-6 mb-2">
                                 <input type="password" name="password" id=""
-                                    class="@error('password') is-invalid @enderror rounded">
+                                    style="border-radius: 8px; width:228px; border: 1px solid"
+                                    class="@error('password') is-invalid @enderror rounded px-2">
                                 @error('password')
                                     <div class="mt-1 invalid-feedback">
                                         {{ $message }}
@@ -155,5 +182,20 @@
                 });
             })
         })
+    </script>
+
+    <script>
+        document.getElementById('kabupaten').addEventListener('change', function() {
+            var selectedKabupaten = this.value;
+            var sekolahOptions = document.querySelectorAll('#id_school option');
+
+            sekolahOptions.forEach(function(option) {
+                if (option.dataset.kabupaten == selectedKabupaten || selectedKabupaten === '') {
+                    option.style.display = 'block';
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+        });
     </script>
 @endsection

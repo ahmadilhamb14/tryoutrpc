@@ -24,11 +24,38 @@
                 </div>
                 <div class="row">
                     <div class="col-3">
+                        <label for="kabupaten">Kabupaten</label>
+                    </div>
+                    <div class="col-6">
+                        : <select class="rounded ms-1 p-1" id="kabupaten" name="id_kabupaten">
+                            @foreach ($kabupatens as $kabupaten)
+                                @if ($kabupaten->id == $user->sekolah->kabupaten->id)
+                                    <option value="{{ $kabupaten->id }}" selected>{{ $user->sekolah->kabupaten->kabupaten }}
+                                    </option>
+                                @else
+                                    <option value="{{ $kabupaten->id }}">{{ $kabupaten->kabupaten }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
                         <label for="sekolah">Asal Sekolah</label>
                     </div>
                     <div class="col-6">
-                        : <input type="text" name="school" id="sekolah" class="rounded ms-1 p-1"
-                            value="{{ old('school', $user->school) }}">
+                        : <select class="rounded ms-1 p-1" id="id_school" name="id_school">
+                            {{-- Initial Sekolahs will be hidden --}}
+                            @foreach ($sekolahs as $sekolah)
+                                @if (old('id_school', $sekolah->id) == $user->id_school)
+                                    <option value="{{ $sekolah->id }}" data-kabupaten="{{ $sekolah->id_kabupaten }}"
+                                        style="display: none;">{{ $sekolah->sekolah }}</option>
+                                @else
+                                    <option value="{{ $sekolah->id }}" data-kabupaten="{{ $sekolah->id_kabupaten }}"
+                                        style="display: none;">{{ $sekolah->sekolah }}</option>
+                                @endif
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="row">
@@ -45,4 +72,19 @@
             <button type="submit" class="btn btn-primary text-align-center mt-4">Simpan</button>
         </form>
     </div>
+
+    <script>
+        document.getElementById('kabupaten').addEventListener('change', function() {
+            var selectedKabupaten = this.value;
+            var sekolahOptions = document.querySelectorAll('#id_school option');
+
+            sekolahOptions.forEach(function(option) {
+                if (option.dataset.kabupaten == selectedKabupaten || selectedKabupaten === '') {
+                    option.style.display = 'block';
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+        });
+    </script>
 @endsection
