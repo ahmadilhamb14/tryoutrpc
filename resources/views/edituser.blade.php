@@ -49,7 +49,7 @@
                             @foreach ($sekolahs as $sekolah)
                                 @if (old('id_school', $sekolah->id) == $user->id_school)
                                     <option value="{{ $sekolah->id }}" data-kabupaten="{{ $sekolah->id_kabupaten }}"
-                                        style="display: none;">{{ $sekolah->sekolah }}</option>
+                                        style="display: none;" selected>{{ $user->sekolah->sekolah }}</option>
                                 @else
                                     <option value="{{ $sekolah->id }}" data-kabupaten="{{ $sekolah->id_kabupaten }}"
                                         style="display: none;">{{ $sekolah->sekolah }}</option>
