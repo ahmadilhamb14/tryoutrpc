@@ -15,8 +15,9 @@ class ExportScore implements FromCollection, WithHeadings
     {
         // $data = Score::all();
         $data = Score::with(['user', 'tryout', 'subtest'])
-    ->select('fullname', 'school', 'tryouts.tryout', 'subtes', 'score', 'scores.created_at')
+    ->select('fullname', 'sekolahs.sekolah', 'tryouts.tryout', 'subtes', 'score', 'scores.created_at')
     ->join('users', 'scores.id_user', '=', 'users.id')
+    ->join('sekolahs', 'users.id_school', '=', 'sekolahs.id')
     ->join('sub_tests', 'scores.id_subtest', '=', 'sub_tests.id')
     ->join('tryouts', 'sub_tests.id_tryout', '=', 'tryouts.id')
     ->orderBy('scores.created_at', 'asc')
