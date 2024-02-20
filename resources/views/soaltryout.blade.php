@@ -33,6 +33,7 @@
 		<!-- Script Timer -->
 		<script type="text/javascript">
 			$(document).ready(function () {
+                
 				/** Membuat Waktu Mulai Hitung Mundur Dengan
 				 * var detik = 0,
 				 * var menit = 1,
@@ -103,19 +104,21 @@
 							if (jam < 0) {
 								clearInterval();
 								/** Variable yang digunakan untuk submit secara otomatis di Form */
+                                
 								// var frmSoal = document.getElementById("frmSoal");
                                 var subtestId = <?php echo $subtestId; ?>;
+                                
                                 var submitBtn = document.getElementById("next");
                                         submitBtn.click();
-							}
+                            }
 						}
 					}
 				}
 				/** Menjalankan Function Hitung Waktu Mundur */
 				hitung();
-			});
+			})
 			// ]]>
-
+            
 		</script>
 </head>
 <body>

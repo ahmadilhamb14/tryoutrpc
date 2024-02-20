@@ -9,6 +9,7 @@ use App\Http\Controllers\TryoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TestingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,3 +99,4 @@ Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 Route::get('/results/export/excel', [ScoreController::class, 'export_excel'])->middleware('auth');
 
 
+Route::get('/testing', [TestingController::class, 'index']);

@@ -7,7 +7,9 @@ use App\Models\SubTest;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTryoutRequest;
-use App\Http\Requests\UpdateTryoutRequest;
+use App\Http\Requests\UpdateTryoutRequest ;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class TryoutController extends Controller
 {
